@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADEMBED_NAME;
-$modversion['version']     = 2.1;
+$modversion['version']     = 2.11;
 $modversion['description'] = _MI_TADEMBED_DESC;
 $modversion['author']      = _MI_TADEMBED_AUTHOR;
 $modversion['credits']     = _MI_TADEMBED_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image']       = "images/logo.png";
 $modversion['dirname']     = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2016/12/15';
+$modversion['release_date']        = '2017-01-08';
 $modversion['module_website_url']  = 'http://tad0616.net/';
 $modversion['module_website_name'] = _MI_TADEMBED_AUTHOR_WEB;
 $modversion['module_status']       = 'release';
