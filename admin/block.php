@@ -9,7 +9,7 @@ if (isset($_REQUEST['op'])) {
     exit;
 }
 
-$pageblock_handler = xoops_getmodulehandler('pageblock');
+$pageblock_handler = xoops_getModuleHandler('pageblock');
 
 switch ($op) {
     case "save":
