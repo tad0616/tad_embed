@@ -10,12 +10,12 @@ function xoops_module_update_tad_embed(&$module, $old_version)
     return true;
 }
 
-//ÀË¬d¬YÄæ¦ì¬O§_¦s¦b
+//æª¢æŸ¥æŸæ¬„ä½æ˜¯å¦å­˜åœ¨
 function chk_chk1()
 {
     global $xoopsDB;
-    $sql           = "select count(*) from " . $xoopsDB->prefix("tadtools_setup") . " where tt_theme='for_tad_embed_theme'";
-    $result        = $xoopsDB->query($sql);
+    $sql    = "SELECT count(*) FROM " . $xoopsDB->prefix("tadtools_setup") . " WHERE tt_theme='for_tad_embed_theme'";
+    $result = $xoopsDB->query($sql);
     list($counter) = $xoopsDB->fetchRow($result);
     if (empty($counter)) {
         return true;
@@ -24,7 +24,7 @@ function chk_chk1()
     return false;
 }
 
-//°õ¦æ§ó·s
+//åŸ·è¡Œæ›´æ–°
 function go_update1()
 {
     global $xoopsDB;
@@ -34,23 +34,23 @@ function go_update1()
     return true;
 }
 
-//«Ø¥ß¥Ø¿ı
+//å»ºç«‹ç›®éŒ„
 function mk_dir($dir = "")
 {
-    //­YµL¥Ø¿ı¦WºÙ¨q¥XÄµ§i°T®§
+    //è‹¥ç„¡ç›®éŒ„åç¨±ç§€å‡ºè­¦å‘Šè¨Šæ¯
     if (empty($dir)) {
         return;
     }
 
-    //­Y¥Ø¿ı¤£¦s¦bªº¸Ü«Ø¥ß¥Ø¿ı
+    //è‹¥ç›®éŒ„ä¸å­˜åœ¨çš„è©±å»ºç«‹ç›®éŒ„
     if (!is_dir($dir)) {
         umask(000);
-        //­Y«Ø¥ß¥¢±Ñ¨q¥XÄµ§i°T®§
+        //è‹¥å»ºç«‹å¤±æ•—ç§€å‡ºè­¦å‘Šè¨Šæ¯
         mkdir($dir, 0777);
     }
 }
 
-//«ş¨©¥Ø¿ı
+//æ‹·è²ç›®éŒ„
 function full_copy($source = "", $target = "")
 {
     if (is_dir($source)) {
@@ -103,7 +103,6 @@ function delete_directory($dirname)
             } else {
                 delete_directory($dirname . '/' . $file);
             }
-
         }
     }
     closedir($dir_handle);

@@ -9,7 +9,7 @@ function list_tad_embed($ebsn)
 {
     global $isAdmin, $xoopsDB, $xoopsTpl;
 
-    $sql    = "select `ebsn`, `title` from `" . $xoopsDB->prefix("tad_embed") . "` ";
+    $sql = "SELECT `ebsn`, `title` FROM `" . $xoopsDB->prefix("tad_embed") . "` ";
     $result = $xoopsDB->query($sql) or web_error($sql);
 
     while ($all = $xoopsDB->fetchArray($result)) {
@@ -51,7 +51,6 @@ function list_tad_embed($ebsn)
         $sweet_alert = new sweet_alert();
         $sweet_alert->render("delete_tad_embed_func", "admin/main.php?op=delete_tad_embed&ebsn=", 'ebsn');
     }
-
 }
 
 /*-----------執行動作判斷區----------*/
