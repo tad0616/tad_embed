@@ -46,9 +46,9 @@ function tad_embed_form($ebsn = "")
     $note = (!isset($DBV['note'])) ? "" : $DBV['note'];
     $xoopsTpl->assign('note', $note);
 
-    $sql    = "select * from `" . $xoopsDB->prefix("newblocks") . "` where `bid` = '{$blockid}'";
+    $sql = "select * from `" . $xoopsDB->prefix("newblocks") . "` where `bid` = '{$blockid}'";
     $result = $xoopsDB->query($sql) or web_error($sql);
-    $row    = $xoopsDB->fetchArray($result);
+    $row = $xoopsDB->fetchArray($result);
 
     //設定「title」欄位預設值
     $title = (!isset($DBV['title'])) ? $row['title'] : $DBV['title'];
@@ -106,7 +106,7 @@ function get_block_id_opt($blockid = '')
 {
     global $xoopsDB, $xoopsModule;
 
-    $sql    = "select * from `" . $xoopsDB->prefix("newblocks") . "` where visible=1";
+    $sql = "SELECT * FROM `" . $xoopsDB->prefix("newblocks") . "` WHERE visible=1";
     $result = $xoopsDB->query($sql) or web_error($sql);
     $option = "";
 
@@ -116,7 +116,7 @@ function get_block_id_opt($blockid = '')
             $$k = $v;
         }
         $selected = $blockid == $bid ? "selected" : "";
-        $option .= "<option value='$bid' $selected>$name</option>";
+        $option   .= "<option value='$bid' $selected>$name</option>";
     }
     return $option;
 }
@@ -137,7 +137,7 @@ function insert_tad_embed()
     //取得使用者編號
     $uid = ($xoopsUser) ? $xoopsUser->getVar('uid') : "";
 
-    $myts            = &MyTextSanitizer::getInstance();
+    $myts            = MyTextSanitizer::getInstance();
     $_POST['width']  = $myts->addSlashes($_POST['width']);
     $_POST['height'] = $myts->addSlashes($_POST['height']);
     $_POST['note']   = $myts->addSlashes($_POST['note']);
@@ -164,7 +164,7 @@ function update_tad_embed($ebsn = "")
     //取得使用者編號
     $uid = ($xoopsUser) ? $xoopsUser->getVar('uid') : "";
 
-    $myts            = &MyTextSanitizer::getInstance();
+    $myts            = MyTextSanitizer::getInstance();
     $_POST['width']  = $myts->addSlashes($_POST['width']);
     $_POST['height'] = $myts->addSlashes($_POST['height']);
     $_POST['note']   = $myts->addSlashes($_POST['note']);
@@ -193,7 +193,7 @@ function list_tad_embed($show_function = 1)
 {
     global $xoopsDB, $xoopsModule, $isAdmin, $xoopsTpl;
 
-    $sql = "select * from `" . $xoopsDB->prefix("tad_embed") . "` order by update_date desc";
+    $sql = "SELECT * FROM `" . $xoopsDB->prefix("tad_embed") . "` ORDER BY update_date DESC";
 
     //getPageBar($原sql語法, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
     $PageBar = getPageBar($sql, 20, 10);
@@ -251,6 +251,7 @@ function select_block()
     $arr               = $allblocks + $allcustomblocks;
     $xoopsTpl->assign('arr', $arr);
 }
+
 /*-----------執行動作判斷區----------*/
 $op   = empty($_REQUEST['op']) ? "" : $_REQUEST['op'];
 $ebsn = empty($_REQUEST['ebsn']) ? "" : intval($_REQUEST['ebsn']);
@@ -292,7 +293,7 @@ switch ($op) {
         $op = "list_tad_embed";
         break;
 
-        /*---判斷動作請貼在上方---*/
+    /*---判斷動作請貼在上方---*/
 }
 
 $xoopsTpl->assign('now_op', $op);

@@ -12,8 +12,8 @@ function xoops_module_install_tad_embed(&$module)
 function chk_chk1()
 {
     global $xoopsDB;
-    $sql           = "select count(*) from " . $xoopsDB->prefix("tadtools_setup") . " where tt_theme='for_tad_embed_theme'";
-    $result        = $xoopsDB->query($sql);
+    $sql    = "SELECT count(*) FROM " . $xoopsDB->prefix("tadtools_setup") . " WHERE tt_theme='for_tad_embed_theme'";
+    $result = $xoopsDB->query($sql);
     list($counter) = $xoopsDB->fetchRow($result);
     if (empty($counter)) {
         return true;
