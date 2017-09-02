@@ -27,7 +27,7 @@ class Tad_EmbedPageBlock extends XoopsObject
     /**
      * constructor
      */
-    public function Tad_EmbedPageBlock()
+    public function __construct()
     {
         $this->XoopsObject();
         $this->initVar("ebsn", XOBJ_DTYPE_INT);
