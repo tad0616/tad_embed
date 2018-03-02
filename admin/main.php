@@ -245,7 +245,7 @@ function delete_tad_embed($ebsn = "")
 function select_block()
 {
     global $xoopsTpl;
-    $pageblock_handler = xoops_getmodulehandler('pageblock');
+    $pageblock_handler = xoops_getModuleHandler('pageblock');
     $allblocks         = $pageblock_handler->getAllBlocks();
     $allcustomblocks   = $pageblock_handler->getAllCustomBlocks();
     $arr               = $allblocks + $allcustomblocks;

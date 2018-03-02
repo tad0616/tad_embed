@@ -6,7 +6,7 @@ $xoopsOption['template_main'] = "tad_embed_demo2.tpl";
 $xoopsConfig['theme_set']     = "for_tad_embed_theme";
 include_once XOOPS_ROOT_PATH . "/header.php";
 /*-----------function區--------------*/
-$ebsn = empty($_REQUEST['ebsn']) ? "" : intval($_REQUEST['ebsn']);
+$ebsn = empty($_REQUEST['ebsn']) ? "" : (int)$_REQUEST['ebsn'];
 
 $embed = get_tad_embed($ebsn);
 
