@@ -33,27 +33,8 @@
   <iframe src="<{$xoops_url}>/modules/tad_embed/tad_embed_demo.php?ebsn=<{$ebsn}>" style="<{$width_smarty}> <{$height_smarty}> <{$border_smarty}>" scrolling="<{$embed.scrolling}>">
   </iframe>
 
-<!--
-  <h2><{$smarty.const._MD_TADEMBED_COPY}></h2>
-  <textarea class="form-control" style="background: #4A633E; color: #FFFFFF; height: 200px; margin: 10px 0px;"><div id="iframe<{$ebsn}>"></div>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $.get("<{$xoops_url}>/modules/tad_embed/tad_embed_demo2.php?ebsn=<{$ebsn}>",function(data){
-      $("#iframe<{$ebsn}>").html(data);
-    });
-  });
-</script></textarea>
+  <a href="page.php?ebsn=<{$ebsn}>" class="btn btn-primary btn-block"><{$smarty.const._MD_TADEMBED_PAGE}></a>
 
-
-<div id="iframe<{$ebsn}>"></div>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $.get("<{$xoops_url}>/modules/tad_embed/tad_embed_demo.php?ebsn=<{$ebsn}>",function(data){
-      $("#iframe<{$ebsn}>").html(data);
-    });
-  });
-</script>
--->
 <{else}>
   <div class="jumbotron" style="margin:20px auto;">
     <h1><{$smarty.const._MD_TADEMBED_SELECT_BLOCK}></h1>

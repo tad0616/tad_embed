@@ -1,3 +1,8 @@
+Tad Embed 2.3 (2017-10-11 release)
+=================================================
+1.Added embedded page functionality
+
+
 Tad Embed 2.1.1 (released on 2017-01-08)
 ===========================================
 1. Adjust the RWD to 1024 to operate

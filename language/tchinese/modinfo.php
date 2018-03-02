@@ -10,3 +10,4 @@ define("_MI_TADEMBED_TEMPLATE_DESC2", "tad_embed_demo_tpl.html的樣板檔。");
 define("_MI_TADEMBED_BNAME1", "範例區塊");
 define("_MI_TADEMBED_BDESC1", "範例區塊(tad_embed_demo)");
 define('_MI_TADEMBED_AUTHOR_WEB', 'Tad teaching network');
+define("_MI_TADEMBED_PAGE", "嵌入頁面");

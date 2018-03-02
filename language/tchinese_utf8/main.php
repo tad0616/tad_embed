@@ -8,3 +8,5 @@ define("_MD_TADEMBED_PREVIEW", "這是效果預覽（實際並不含外層圓角
 define("_MD_TADEMBED_SELECT_BLOCK", "請選擇欲崁入區塊");
 define("_MD_TADEMBED_DEMO", "呈現預覽");
 define("_MD_TADEMBED_NOTE", "若下方呈現空白，請檢查是否有安裝 blank_theme 空白佈景。");
+
+define("_MD_TADEMBED_PAGE", "嵌入頁面");

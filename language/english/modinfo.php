@@ -11,3 +11,4 @@ define("_MI_TADEMBED_TEMPLATE_DESC2", "tad_embed_demo_tpl.html template file");
 define("_MI_TADEMBED_BNAME1", "example block");
 define("_MI_TADEMBED_BDESC1", "example block (tad_embed_demo)");
 define('_MI_TADEMBED_AUTHOR_WEB', 'Tad teaching network');
+define("_MI_TADEMBED_PAGE", "embedded page");

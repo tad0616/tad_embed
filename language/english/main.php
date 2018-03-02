@@ -8,3 +8,5 @@ define("_MD_TADEMBED_PREVIEW", "This is the effect preview (actually does not co
 define("_MD_TADEMBED_SELECT_BLOCK", "Please select the block to be embedded");
 define("_MD_TADEMBED_DEMO", "render preview");
 define("_MD_TADEMBED_NOTE", "if the bottom of the blank, please check whether the blank_theme blank set.");
+
+define("_MD_TADEMBED_PAGE", "embedded page");
