@@ -3,9 +3,9 @@ function xoops_module_update_tad_embed(&$module, $old_version)
 {
     global $xoopsDB;
 
-    if (chk_chk1()) {
-        go_update1();
-    }
+    // if (chk_chk1()) {
+    //     go_update1();
+    // }
 
     return true;
 }
@@ -14,8 +14,8 @@ function xoops_module_update_tad_embed(&$module, $old_version)
 function chk_chk1()
 {
     global $xoopsDB;
-    $sql    = "SELECT count(*) FROM " . $xoopsDB->prefix("tadtools_setup") . " WHERE tt_theme='for_tad_embed_theme'";
-    $result = $xoopsDB->query($sql);
+    $sql           = "SELECT count(*) FROM " . $xoopsDB->prefix("tadtools_setup") . " WHERE tt_theme='for_tad_embed_theme'";
+    $result        = $xoopsDB->query($sql);
     list($counter) = $xoopsDB->fetchRow($result);
     if (empty($counter)) {
         return true;

@@ -46,9 +46,9 @@ function tad_embed_form($ebsn = "")
     $note = (!isset($DBV['note'])) ? "" : $DBV['note'];
     $xoopsTpl->assign('note', $note);
 
-    $sql = "select * from `" . $xoopsDB->prefix("newblocks") . "` where `bid` = '{$blockid}'";
+    $sql    = "select * from `" . $xoopsDB->prefix("newblocks") . "` where `bid` = '{$blockid}'";
     $result = $xoopsDB->query($sql) or web_error($sql);
-    $row = $xoopsDB->fetchArray($result);
+    $row    = $xoopsDB->fetchArray($result);
 
     //設定「title」欄位預設值
     $title = (!isset($DBV['title'])) ? $row['title'] : $DBV['title'];
@@ -92,7 +92,6 @@ function tad_embed_form($ebsn = "")
     $Block = new XoopsBlock($row);
 
     $options_form = $Block->getOptions();
-    $option       = "";
     if ($options_form) {
         $XoopsFormLabel = new XoopsFormLabel(_MA_TADEMBED_BLOCK_OPTIONS, $options_form);
         $options        = $XoopsFormLabel->render();
@@ -106,7 +105,7 @@ function get_block_id_opt($blockid = '')
 {
     global $xoopsDB, $xoopsModule;
 
-    $sql = "SELECT * FROM `" . $xoopsDB->prefix("newblocks") . "` WHERE visible=1";
+    $sql    = "SELECT * FROM `" . $xoopsDB->prefix("newblocks") . "` WHERE visible=1";
     $result = $xoopsDB->query($sql) or web_error($sql);
     $option = "";
 
@@ -116,7 +115,7 @@ function get_block_id_opt($blockid = '')
             $$k = $v;
         }
         $selected = $blockid == $bid ? "selected" : "";
-        $option   .= "<option value='$bid' $selected>$name</option>";
+        $option .= "<option value='$bid' $selected>$name</option>";
     }
     return $option;
 }
@@ -203,7 +202,7 @@ function list_tad_embed($show_function = 1)
 
     $result = $xoopsDB->query($sql) or web_error($sql);
 
-    $all_content = "";
+    $all_content = array();
     $i           = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         //以下會產生這些變數： $ebsn , $blockid , $width , $height , $border , $note , $title , $uid , $update_date , $counter
@@ -293,7 +292,7 @@ switch ($op) {
         $op = "list_tad_embed";
         break;
 
-    /*---判斷動作請貼在上方---*/
+        /*---判斷動作請貼在上方---*/
 }
 
 $xoopsTpl->assign('now_op', $op);

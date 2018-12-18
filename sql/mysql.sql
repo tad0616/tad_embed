@@ -13,4 +13,4 @@ CREATE TABLE `tad_embed` (
   `http_referer` VARCHAR( 255 ) NOT NULL COMMENT '最後來源',
   `counter` mediumint(9) unsigned NOT NULL COMMENT '計數',
 PRIMARY KEY (`ebsn`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

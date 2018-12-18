@@ -9,7 +9,7 @@ $xoopsOption['template_main'] = "tad_embed_demo.tpl";
 $xoopsConfig['theme_set']     = "blank_theme";
 include_once XOOPS_ROOT_PATH . "/header.php";
 /*-----------function區--------------*/
-$ebsn = empty($_REQUEST['ebsn']) ? "" : (int)$_REQUEST['ebsn'];
+$ebsn = empty($_REQUEST['ebsn']) ? "" : (int) $_REQUEST['ebsn'];
 
 //$embed=get_tad_embed($ebsn);
 

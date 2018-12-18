@@ -1,4 +1,2 @@
-<{if $ebsn and $embed}>
-  <iframe src="<{$xoops_url}>/modules/tad_embed/tad_embed_demo.php?ebsn=<{$ebsn}>" style="<{$width_smarty}> <{$height_smarty}> <{$border_smarty}>" scrolling="<{$embed.scrolling}>">
-  </iframe>
-<{/if}>
+<{assign var=this_file value=$smarty.template|basename|replace:'db:':''}>
+<{includeq file="$xoops_rootpath/modules/$xoops_dirname/templates/b4.tpl"}>
