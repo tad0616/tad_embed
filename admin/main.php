@@ -47,7 +47,7 @@ function tad_embed_form($ebsn = "")
     $xoopsTpl->assign('note', $note);
 
     $sql    = "select * from `" . $xoopsDB->prefix("newblocks") . "` where `bid` = '{$blockid}'";
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, _LINE__);
     $row    = $xoopsDB->fetchArray($result);
 
     //設定「title」欄位預設值
@@ -106,7 +106,7 @@ function get_block_id_opt($blockid = '')
     global $xoopsDB, $xoopsModule;
 
     $sql    = "SELECT * FROM `" . $xoopsDB->prefix("newblocks") . "` WHERE visible=1";
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, _LINE__);
     $option = "";
 
     while ($all = $xoopsDB->fetchArray($result)) {
@@ -125,7 +125,7 @@ function add_tad_embed_counter($ebsn = '')
 {
     global $xoopsDB, $xoopsModule;
     $sql = "update `" . $xoopsDB->prefix("tad_embed") . "` set `counter` = `counter` + 1 where `ebsn` = '{$ebsn}'";
-    $xoopsDB->queryF($sql) or web_error($sql);
+    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, _LINE__);
 }
 
 //新增資料到tad_embed中
@@ -148,7 +148,7 @@ function insert_tad_embed()
     $sql = "insert into `" . $xoopsDB->prefix("tad_embed") . "`
 	(`blockid` , `width` , `height` , `border` , `note` , `title` , `options` ,`scrolling`  , `uid` , `update_date` , `counter`)
 	values('{$_POST['blockid']}' , '{$_POST['width']}' , '{$_POST['height']}' , '{$_POST['border']}' , '{$_POST['note']}' , '{$_POST['title']}' , '{$options}' , '{$_POST['scrolling']}' , '{$uid}' , '{$now}' , 0)";
-    $xoopsDB->query($sql) or web_error($sql);
+    $xoopsDB->query($sql) or web_error($sql, __FILE__, _LINE__);
 
     //取得最後新增資料的流水編號
     $ebsn = $xoopsDB->getInsertId();
@@ -183,7 +183,7 @@ function update_tad_embed($ebsn = "")
 	 `scrolling` = '{$_POST['scrolling']}' ,
 	 `uid` = '{$uid}'
 	where `ebsn` = '$ebsn'";
-    $xoopsDB->queryF($sql) or web_error($sql);
+    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, _LINE__);
     return $ebsn;
 }
 
@@ -200,7 +200,7 @@ function list_tad_embed($show_function = 1)
     $sql     = $PageBar['sql'];
     $total   = $PageBar['total'];
 
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, _LINE__);
 
     $all_content = array();
     $i           = 0;
@@ -238,7 +238,7 @@ function delete_tad_embed($ebsn = "")
 {
     global $xoopsDB, $isAdmin;
     $sql = "delete from `" . $xoopsDB->prefix("tad_embed") . "` where `ebsn` = '{$ebsn}'";
-    $xoopsDB->queryF($sql) or web_error($sql);
+    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, _LINE__);
 }
 
 function select_block()

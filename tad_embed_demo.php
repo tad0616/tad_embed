@@ -24,7 +24,7 @@ function blockShow($ebsn)
     global $xoopsDB;
     $bb     = get_tad_embed($ebsn);
     $sql    = "select * from `" . $xoopsDB->prefix("newblocks") . "` where `bid` = '{$bb['blockid']}'";
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, _LINE__);
 
     include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
     include_once XOOPS_ROOT_PATH . '/class/template.php';
