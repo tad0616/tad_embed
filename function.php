@@ -16,7 +16,7 @@ function get_tad_embed($ebsn = "")
     }
 
     $sql    = "select * from `" . $xoopsDB->prefix("tad_embed") . "` where `ebsn` = '{$ebsn}'";
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, _LINE__);
+    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
     $data   = $xoopsDB->fetchArray($result);
     return $data;
 }

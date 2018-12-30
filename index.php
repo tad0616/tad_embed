@@ -10,7 +10,7 @@ function list_tad_embed($ebsn)
     global $isAdmin, $xoopsDB, $xoopsTpl;
 
     $sql = "SELECT `ebsn`, `title` FROM `" . $xoopsDB->prefix("tad_embed") . "` ";
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, _LINE__);
+    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
 
     while ($all = $xoopsDB->fetchArray($result)) {
         $menu[] = $all;
