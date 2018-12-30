@@ -134,20 +134,25 @@ function insert_tad_embed()
     global $xoopsDB, $xoopsUser;
 
     //取得使用者編號
-    $uid = ($xoopsUser) ? $xoopsUser->getVar('uid') : "";
+    $uid = ($xoopsUser) ? $xoopsUser->uid() : "";
 
-    $myts            = MyTextSanitizer::getInstance();
-    $_POST['width']  = $myts->addSlashes($_POST['width']);
-    $_POST['height'] = $myts->addSlashes($_POST['height']);
-    $_POST['note']   = $myts->addSlashes($_POST['note']);
+    $myts    = MyTextSanitizer::getInstance();
+    $height  = (int) $_POST['height'];
+    $border  = (int) $_POST['border'];
+    $blockid = (int) $_POST['blockid'];
+
+    $scrolling = $myts->addSlashes($_POST['scrolling']);
+    $width     = $myts->addSlashes($_POST['width']);
+    $title     = $myts->addSlashes($_POST['title']);
+    $note      = $myts->addSlashes($_POST['note']);
 
     $options = implode("|", $_POST['options']);
     $options = $myts->addSlashes($options);
 
     $now = date("Y-m-d H:i:s", xoops_getUserTimestamp(time()));
     $sql = "insert into `" . $xoopsDB->prefix("tad_embed") . "`
-	(`blockid` , `width` , `height` , `border` , `note` , `title` , `options` ,`scrolling`  , `uid` , `update_date` , `counter`)
-	values('{$_POST['blockid']}' , '{$_POST['width']}' , '{$_POST['height']}' , '{$_POST['border']}' , '{$_POST['note']}' , '{$_POST['title']}' , '{$options}' , '{$_POST['scrolling']}' , '{$uid}' , '{$now}' , 0)";
+	(`blockid` , `width` , `height` , `border` , `note` , `title` , `options` ,`scrolling`  , `uid` , `update_date` , `http_referer`, `counter`)
+	values('{$blockid}' , '{$width}' , '{$height}' , '{$border}' , '{$note}' , '{$title}' , '{$options}' , '{$scrolling}' , '{$uid}' , '{$now}' , '' , 0)";
     $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
 
     //取得最後新增資料的流水編號
@@ -161,27 +166,32 @@ function update_tad_embed($ebsn = "")
     global $xoopsDB, $xoopsUser;
 
     //取得使用者編號
-    $uid = ($xoopsUser) ? $xoopsUser->getVar('uid') : "";
+    $uid = ($xoopsUser) ? $xoopsUser->uid() : "";
 
-    $myts            = MyTextSanitizer::getInstance();
-    $_POST['width']  = $myts->addSlashes($_POST['width']);
-    $_POST['height'] = $myts->addSlashes($_POST['height']);
-    $_POST['note']   = $myts->addSlashes($_POST['note']);
+    $myts    = MyTextSanitizer::getInstance();
+    $height  = (int) $_POST['height'];
+    $border  = (int) $_POST['border'];
+    $blockid = (int) $_POST['blockid'];
+
+    $scrolling = $myts->addSlashes($_POST['scrolling']);
+    $width     = $myts->addSlashes($_POST['width']);
+    $title     = $myts->addSlashes($_POST['title']);
+    $note      = $myts->addSlashes($_POST['note']);
 
     $options = implode("|", $_POST['options']);
     $options = $myts->addSlashes($options);
 
     $now = date("Y-m-d H:i:s", xoops_getUserTimestamp(time()));
     $sql = "update `" . $xoopsDB->prefix("tad_embed") . "` set
-	 `blockid` = '{$_POST['blockid']}' ,
-	 `width` = '{$_POST['width']}' ,
-	 `height` = '{$_POST['height']}' ,
-	 `border` = '{$_POST['border']}' ,
-	 `note` = '{$_POST['note']}' ,
-	 `title` = '{$_POST['title']}' ,
-	 `options` = '{$options}' ,
-	 `scrolling` = '{$_POST['scrolling']}' ,
-	 `uid` = '{$uid}'
+    `blockid` = '{$blockid}' ,
+    `width` = '{$width}' ,
+    `height` = '{$height}' ,
+    `border` = '{$border}' ,
+    `note` = '{$note}' ,
+    `title` = '{$title}' ,
+    `options` = '{$options}' ,
+    `scrolling` = '{$scrolling}' ,
+    `uid` = '{$uid}'
 	where `ebsn` = '$ebsn'";
     $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
     return $ebsn;
