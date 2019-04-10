@@ -9,8 +9,8 @@ function xoops_module_uninstall_tad_embed(&$module)
     return true;
 }
 
-//§R°£¥Ø¿ı
-function delete_directory($dirname)
+//åˆªé™¤ç›®éŒ„
+function tad_embed_delete_directory($dirname)
 {
     if (is_dir($dirname)) {
         $dir_handle = opendir($dirname);
@@ -25,7 +25,7 @@ function delete_directory($dirname)
             if (!is_dir($dirname . "/" . $file)) {
                 unlink($dirname . "/" . $file);
             } else {
-                delete_directory($dirname . '/' . $file);
+                tad_embed_delete_directory($dirname . '/' . $file);
             }
 
         }
@@ -35,8 +35,8 @@ function delete_directory($dirname)
     return true;
 }
 
-//«ş¨©¥Ø¿ı
-function full_copy($source = "", $target = "")
+//æ‹·è²ç›®éŒ„
+function tad_embed_full_copy($source = "", $target = "")
 {
     if (is_dir($source)) {
         @mkdir($target);
@@ -48,7 +48,7 @@ function full_copy($source = "", $target = "")
 
             $Entry = $source . '/' . $entry;
             if (is_dir($Entry)) {
-                full_copy($Entry, $target . '/' . $entry);
+                tad_embed_full_copy($Entry, $target . '/' . $entry);
                 continue;
             }
             copy($Entry, $target . '/' . $entry);
