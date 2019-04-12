@@ -17,7 +17,7 @@ function tad_embed_form($ebsn = "")
     if (!empty($ebsn)) {
         $DBV = get_tad_embed($ebsn);
     } else {
-        $DBV = array();
+        $DBV = [];
     }
 
     //預設值設定
@@ -212,7 +212,7 @@ function list_tad_embed($show_function = 1)
 
     $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
 
-    $all_content = array();
+    $all_content = [];
     $i           = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         //以下會產生這些變數： $ebsn , $blockid , $width , $height , $border , $note , $title , $uid , $update_date , $counter

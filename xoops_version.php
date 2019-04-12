@@ -1,5 +1,5 @@
 <?php
-$modversion = array();
+$modversion = [];
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADEMBED_NAME;
@@ -25,7 +25,7 @@ $modversion['min_xoops']           = '2.5';
 $modversion['min_tadtools']        = '1.20';
 
 //---paypal資訊---//
-$modversion['paypal']                  = array();
+$modversion['paypal']                  = [];
 $modversion['paypal']['business']      = 'tad0616@gmail.com';
 $modversion['paypal']['item_name']     = 'Donation : ' . _MI_TAD_WEB;
 $modversion['paypal']['amount']        = 0;
@@ -54,7 +54,7 @@ $modversion['templates'][2]['file']        = 'tad_embed_demo_tpl.html';
 $modversion['templates'][2]['description'] = _MI_TADEMBED_TEMPLATE_DESC2;
 
 //---樣板設定---//
-$modversion['templates']                    = array();
+$modversion['templates']                    = [];
 $i                                          = 1;
 $modversion['templates'][$i]['file']        = 'tad_embed_adm_main.tpl';
 $modversion['templates'][$i]['description'] = 'tad_embed_adm_main.tpl';

@@ -82,7 +82,7 @@ class Tad_EmbedPageBlock extends XoopsObject
      */
     public function toArray($format = "s")
     {
-        $ret  = array();
+        $ret  = [];
         $vars = $this->getVars();
         foreach (array_keys($vars) as $key) {
             $value     = $this->getVar($key, $format);
@@ -107,12 +107,12 @@ class Tad_EmbedPageBlock extends XoopsObject
      */
     public function render($template, $unique = 0)
     {
-        $block = array(
+        $block = [
             'ebsn'    => $this->getVar('ebsn'),
             'blockid' => $this->getVar('blockid'),
             'module'  => $this->block->getVar('dirname'),
             'title'   => $this->getVar('title')
-        );
+        ];
 
         $xoopsLogger = XoopsLogger::getInstance();
 
@@ -180,7 +180,7 @@ class Tad_EmbedPageBlockHandler extends XoopsPersistableObjectHandler
      */
     public function getAllBlocks()
     {
-        $ret    = array();
+        $ret    = [];
         $result = $this->db->query("SELECT bid, b.name AS name, b.title AS title, m.name AS modname  FROM " . $this->db->prefix("newblocks") . " b, " . $this->db->prefix("modules") . " m WHERE (b.mid=m.mid) ORDER BY modname, name");
 
         while (list($id, $name, $title, $modname) = $this->db->fetchRow($result)) {
@@ -196,7 +196,7 @@ class Tad_EmbedPageBlockHandler extends XoopsPersistableObjectHandler
      */
     public function getAllCustomBlocks()
     {
-        $ret    = array();
+        $ret    = [];
         $result = $this->db->query("
             SELECT bid, name, title FROM " . $this->db->prefix("newblocks") . "  WHERE  mid = 0 ORDER BY name");
 
