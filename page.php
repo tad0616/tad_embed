@@ -55,7 +55,7 @@ function list_tad_embed($ebsn)
 
 /*-----------執行動作判斷區----------*/
 $op   = empty($_REQUEST['op']) ? "" : $_REQUEST['op'];
-$ebsn = empty($_REQUEST['ebsn']) ? "" : intval($_REQUEST['ebsn']);
+$ebsn = empty($_REQUEST['ebsn']) ? "" : (int)$_REQUEST['ebsn'];
 
 switch ($op) {
 

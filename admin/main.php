@@ -27,7 +27,7 @@ function tad_embed_form($ebsn = "")
     $xoopsTpl->assign('ebsn', $ebsn);
 
     //設定「blockid」欄位預設值
-    $blockid = (!isset($DBV['blockid'])) ? intval($_REQUEST['blockid']) : $DBV['blockid'];
+    $blockid = (!isset($DBV['blockid'])) ? (int)$_REQUEST['blockid'] : $DBV['blockid'];
     $xoopsTpl->assign('blockid', $blockid);
 
     //設定「width」欄位預設值
@@ -263,7 +263,7 @@ function select_block()
 
 /*-----------執行動作判斷區----------*/
 $op   = empty($_REQUEST['op']) ? "" : $_REQUEST['op'];
-$ebsn = empty($_REQUEST['ebsn']) ? "" : intval($_REQUEST['ebsn']);
+$ebsn = empty($_REQUEST['ebsn']) ? "" : (int)$_REQUEST['ebsn'];
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/
