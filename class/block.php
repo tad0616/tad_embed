@@ -17,7 +17,7 @@
  * @author          trabis <lusopoemas@gmail.com>
  * @version         $Id: block.php 0 2009-11-14 18:47:04Z trabis $
  */
-defined('XOOPS_ROOT_PATH') or die("XOOPS root path not defined");
+defined('XOOPS_ROOT_PATH') or die('XOOPS root path not defined');
 
 include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
@@ -42,15 +42,15 @@ class TadEmbedBlockForm extends XoopsThemeForm
         $this->addElement(new XoopsFormRadioYN(_MA_TADEMBED_BORDER, 'border', $target->block->getVar('border', 'e')));
         $this->addElement(new XoopsFormTextArea(_MA_TADEMBED_NOTE, 'note', $target->block->getVar('border', 'e'), 3, 50, ''));
 
-        $this->addElement(new XoopsFormHidden("blockid", $target->getVar('blockid')));
-        $this->addElement(new XoopsFormHidden("op", "save"));
+        $this->addElement(new XoopsFormHidden('blockid', $target->getVar('blockid')));
+        $this->addElement(new XoopsFormHidden('op', 'save'));
         if (!$target->isNew()) {
-            $this->addElement(new XoopsFormHidden("ebsn", $target->getVar('ebsn')));
+            $this->addElement(new XoopsFormHidden('ebsn', $target->getVar('ebsn')));
         }
-        $tray = new XoopsFormElementTray("");
-        $tray->addElement(new XoopsFormButton("", "submit", _MA_TADEMBED_OK, "submit"));
+        $tray = new XoopsFormElementTray('');
+        $tray->addElement(new XoopsFormButton('', 'submit', _MA_TADEMBED_OK, 'submit'));
 
-        $cancel = new XoopsFormButton("", "cancel", _MA_TADEMBED_CANCEL, "button");
+        $cancel = new XoopsFormButton('', 'cancel', _MA_TADEMBED_CANCEL, 'button');
         $cancel->setExtra("onclick=\"self.location='index.php?ebsn=" . $target->getVar('ebsn') . "';\"");
         $tray->addElement($cancel);
 

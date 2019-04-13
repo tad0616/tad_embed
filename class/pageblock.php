@@ -17,8 +17,7 @@
  * @author          trabis <lusopoemas@gmail.com>
  * @version         $Id: pageblock.php 0 2009-11-14 18:47:04Z trabis $
  */
-
-defined('XOOPS_ROOT_PATH') or die("XOOPS root path not defined");
+defined('XOOPS_ROOT_PATH') or die('XOOPS root path not defined');
 
 class Tad_EmbedPageBlock extends XoopsObject
 {
@@ -30,7 +29,7 @@ class Tad_EmbedPageBlock extends XoopsObject
     public function __construct()
     {
         parent::__construct();
-        $this->initVar("ebsn", XOBJ_DTYPE_INT);
+        $this->initVar('ebsn', XOBJ_DTYPE_INT);
         $this->initVar('blockid', XOBJ_DTYPE_INT);
         $this->initVar('width', XOBJ_DTYPE_TXTBOX, '100%');
         $this->initVar('height', XOBJ_DTYPE_TXTBOX, '300px');
@@ -50,7 +49,7 @@ class Tad_EmbedPageBlock extends XoopsObject
     public function setBlock($blockid = 0)
     {
         include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
-        if ($blockid == 0) {
+        if (0 == $blockid) {
             $this->block = new XoopsBlock($this->getVar('blockid'));
             $this->block->assignVar('options', $this->getVar('options', 'n'));
             $this->block->assignVar('title', $this->getVar('title', 'n'));
@@ -71,6 +70,7 @@ class Tad_EmbedPageBlock extends XoopsObject
         include_once XOOPS_ROOT_PATH . '/modules/tad_embed/class/block.php';
         $form = new TadEmbedBlockForm('Block', 'blockform', 'block.php');
         $form->createElements($this);
+
         return $form;
     }
 
@@ -80,18 +80,18 @@ class Tad_EmbedPageBlock extends XoopsObject
      * @param string $format
      * @return array
      */
-    public function toArray($format = "s")
+    public function toArray($format = 's')
     {
-        $ret  = [];
+        $ret = [];
         $vars = $this->getVars();
         foreach (array_keys($vars) as $key) {
-            $value     = $this->getVar($key, $format);
+            $value = $this->getVar($key, $format);
             $ret[$key] = $value;
         }
 
         $vars = $this->block->getVars();
         foreach (array_keys($vars) as $key) {
-            $value              = $this->block->getVar($key, $format);
+            $value = $this->block->getVar($key, $format);
             $ret['block'][$key] = $value;
         }
 
@@ -102,28 +102,28 @@ class Tad_EmbedPageBlock extends XoopsObject
      * Get content for this page block
      *
      * @param int  $unique
-     * @param bool $last
+     * @param mixed $template
      * @return array
      */
     public function render($template, $unique = 0)
     {
         $block = [
-            'ebsn'    => $this->getVar('ebsn'),
+            'ebsn' => $this->getVar('ebsn'),
             'blockid' => $this->getVar('blockid'),
-            'module'  => $this->block->getVar('dirname'),
-            'title'   => $this->getVar('title')
+            'module' => $this->block->getVar('dirname'),
+            'title' => $this->getVar('title'),
         ];
 
         $xoopsLogger = XoopsLogger::getInstance();
 
         $template->caching = 0;
 
-        $tplName = ($tplName = $this->block->getVar('template')) ? "db:$tplName" : "db:system_block_dummy.html";
+        $tplName = ($tplName = $this->block->getVar('template')) ? "db:$tplName" : 'db:system_block_dummy.html';
 
         $cacheid = 'blk_' . $this->getVar('ebsn');
 
         if ($this->getVar('cachebyurl')) {
-            $cacheid .= "_" . md5($_SERVER['REQUEST_URI']);
+            $cacheid .= '_' . md5($_SERVER['REQUEST_URI']);
         }
 
         if (!$bcachetime || !$template->is_cached($tplName, $cacheid)) {
@@ -137,6 +137,7 @@ class Tad_EmbedPageBlock extends XoopsObject
             $xoopsLogger->addBlock($this->block->getVar('name'), true, $bcachetime);
             $block['content'] = $template->fetch($tplName, $cacheid);
         }
+
         return $block;
     }
 }
@@ -145,20 +146,17 @@ class Tad_EmbedPageBlockHandler extends XoopsPersistableObjectHandler
 {
     /**
      * constructor
+     * @param mixed $db
      */
     public function __construct($db)
     {
-        parent::__construct($db, "tad_embed", 'Tad_EmbedPageBlock', "ebsn", "title");
+        parent::__construct($db, 'tad_embed', 'Tad_EmbedPageBlock', 'ebsn', 'title');
     }
 
     /**
      * Insert a new page block ready to be configured
      *
-     * @param int $moduleid
-     * @param int $location
-     * @param int $tabid
      * @param int $blockid
-     * @param int $priority
      *
      * @return Tad_EmbedBlock|false
      */
@@ -170,6 +168,7 @@ class Tad_EmbedPageBlockHandler extends XoopsPersistableObjectHandler
         if ($this->insert($block)) {
             return $block;
         }
+
         return false;
     }
 
@@ -180,12 +179,13 @@ class Tad_EmbedPageBlockHandler extends XoopsPersistableObjectHandler
      */
     public function getAllBlocks()
     {
-        $ret    = [];
-        $result = $this->db->query("SELECT bid, b.name AS name, b.title AS title, m.name AS modname  FROM " . $this->db->prefix("newblocks") . " b, " . $this->db->prefix("modules") . " m WHERE (b.mid=m.mid) ORDER BY modname, name");
+        $ret = [];
+        $result = $this->db->query('SELECT bid, b.name AS name, b.title AS title, m.name AS modname  FROM ' . $this->db->prefix('newblocks') . ' b, ' . $this->db->prefix('modules') . ' m WHERE (b.mid=m.mid) ORDER BY modname, name');
 
         while (list($id, $name, $title, $modname) = $this->db->fetchRow($result)) {
             $ret[$id] = $modname . ' --> ' . $title . ' (' . $name . ')';
         }
+
         return $ret;
     }
 
@@ -196,13 +196,14 @@ class Tad_EmbedPageBlockHandler extends XoopsPersistableObjectHandler
      */
     public function getAllCustomBlocks()
     {
-        $ret    = [];
-        $result = $this->db->query("
-            SELECT bid, name, title FROM " . $this->db->prefix("newblocks") . "  WHERE  mid = 0 ORDER BY name");
+        $ret = [];
+        $result = $this->db->query('
+            SELECT bid, name, title FROM ' . $this->db->prefix('newblocks') . '  WHERE  mid = 0 ORDER BY name');
 
         while (list($id, $name, $title) = $this->db->fetchRow($result)) {
-            $ret[$id] = $name . " --> " . $title;
+            $ret[$id] = $name . ' --> ' . $title;
         }
+
         return $ret;
     }
 }
