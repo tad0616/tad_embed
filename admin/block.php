@@ -52,7 +52,7 @@ switch ($op) {
     case 'new':
     case 'edit':
 
-        if ('new' == $op) {
+        if ('new' === $op) {
             $block = $pageblock_handler->create();
             $block->setVar('blockid', $_POST['blockid']);
             $block->setVar('width', '100%');
