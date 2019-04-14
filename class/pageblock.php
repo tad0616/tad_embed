@@ -17,7 +17,7 @@
  * @author          trabis <lusopoemas@gmail.com>
  * @version         $Id: pageblock.php 0 2009-11-14 18:47:04Z trabis $
  */
-defined('XOOPS_ROOT_PATH') or die('XOOPS root path not defined');
+defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 
 class Tad_EmbedPageBlock extends XoopsObject
 {
@@ -48,7 +48,7 @@ class Tad_EmbedPageBlock extends XoopsObject
      */
     public function setBlock($blockid = 0)
     {
-        include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
+        require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
         if (0 == $blockid) {
             $this->block = new XoopsBlock($this->getVar('blockid'));
             $this->block->assignVar('options', $this->getVar('options', 'n'));
@@ -67,7 +67,7 @@ class Tad_EmbedPageBlock extends XoopsObject
      */
     public function getForm()
     {
-        include_once XOOPS_ROOT_PATH . '/modules/tad_embed/class/block.php';
+        require_once XOOPS_ROOT_PATH . '/modules/tad_embed/class/block.php';
         $form = new TadEmbedBlockForm('Block', 'blockform', 'block.php');
         $form->createElements($this);
 
@@ -148,7 +148,7 @@ class Tad_EmbedPageBlockHandler extends XoopsPersistableObjectHandler
      * constructor
      * @param mixed $db
      */
-    public function __construct($db)
+    public function __construct(\XoopsDatabase $db)
     {
         parent::__construct($db, 'tad_embed', 'Tad_EmbedPageBlock', 'ebsn', 'title');
     }
@@ -182,7 +182,7 @@ class Tad_EmbedPageBlockHandler extends XoopsPersistableObjectHandler
         $ret = [];
         $result = $this->db->query('SELECT bid, b.name AS name, b.title AS title, m.name AS modname  FROM ' . $this->db->prefix('newblocks') . ' b, ' . $this->db->prefix('modules') . ' m WHERE (b.mid=m.mid) ORDER BY modname, name');
 
-        while (list($id, $name, $title, $modname) = $this->db->fetchRow($result)) {
+        while (false !== (list($id, $name, $title, $modname) = $this->db->fetchRow($result))) {
             $ret[$id] = $modname . ' --> ' . $title . ' (' . $name . ')';
         }
 
@@ -200,7 +200,7 @@ class Tad_EmbedPageBlockHandler extends XoopsPersistableObjectHandler
         $result = $this->db->query('
             SELECT bid, name, title FROM ' . $this->db->prefix('newblocks') . '  WHERE  mid = 0 ORDER BY name');
 
-        while (list($id, $name, $title) = $this->db->fetchRow($result)) {
+        while (false !== (list($id, $name, $title) = $this->db->fetchRow($result))) {
             $ret[$id] = $name . ' --> ' . $title;
         }
 

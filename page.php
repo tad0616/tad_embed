@@ -1,8 +1,8 @@
 <?php
 /*-----------引入檔案區--------------*/
-include_once 'header.php';
-$xoopsOption['template_main'] = 'tad_embed_page.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once __DIR__ . '/header.php';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_page.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------function區--------------*/
 function list_tad_embed($ebsn)
@@ -12,7 +12,7 @@ function list_tad_embed($ebsn)
     $sql = 'SELECT `ebsn`, `title` FROM `' . $xoopsDB->prefix('tad_embed') . '` ';
     $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
 
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         $menu[] = $all;
     }
     $xoopsTpl->assign('menu', $menu);
@@ -32,7 +32,7 @@ function list_tad_embed($ebsn)
     //高亮度語法
     $syntaxhighlighter_code = '';
     if (file_exists(TADTOOLS_PATH . '/syntaxhighlighter.php')) {
-        include_once TADTOOLS_PATH . '/syntaxhighlighter.php';
+        require_once TADTOOLS_PATH . '/syntaxhighlighter.php';
         $syntaxhighlighter = new syntaxhighlighter();
         $syntaxhighlighter_code = $syntaxhighlighter->render();
     }
@@ -47,7 +47,7 @@ function list_tad_embed($ebsn)
         if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
             redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
         }
-        include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
+        require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
         $sweet_alert = new sweet_alert();
         $sweet_alert->render('delete_tad_embed_func', 'admin/main.php?op=delete_tad_embed&ebsn=', 'ebsn');
     }
@@ -67,4 +67,4 @@ switch ($op) {
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

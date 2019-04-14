@@ -17,9 +17,9 @@
  * @author          trabis <lusopoemas@gmail.com>
  * @version         $Id: block.php 0 2009-11-14 18:47:04Z trabis $
  */
-defined('XOOPS_ROOT_PATH') or die('XOOPS root path not defined');
+defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 
-include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
 class TadEmbedBlockForm extends XoopsThemeForm
 {

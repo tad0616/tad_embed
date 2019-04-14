@@ -115,7 +115,7 @@ class Utility
     {
         global $xoopsDB;
         $sql = 'INSERT INTO ' . $xoopsDB->prefix('tadtools_setup') . " (`tt_theme`, `tt_use_bootstrap`, `tt_bootstrap_color`, `tt_theme_kind`) VALUES ('for_tad_embed_theme', '0',  'bootstrap3', 'html'),";
-        $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, mysql_error());
+        $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $GLOBALS['xoopsDB']->error());
 
         return true;
     }

@@ -1,16 +1,16 @@
 <?php
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = 'tad_embed_adm_main.tpl';
-include_once 'header.php';
-include_once '../function.php';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_adm_main.tpl';
+require_once __DIR__ . '/header.php';
+require_once dirname(__DIR__) . '/function.php';
 
 /*-----------function區--------------*/
 //tad_embed編輯表單
 function tad_embed_form($ebsn = '')
 {
     global $xoopsDB, $xoopsUser, $xoopsTpl;
-    include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-    include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
     //include_once(XOOPS_ROOT_PATH."/class/xoopseditor/xoopseditor.php");
 
     //抓取預設值
@@ -82,7 +82,7 @@ function tad_embed_form($ebsn = '')
     if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
         redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
     }
-    include_once TADTOOLS_PATH . '/formValidator.php';
+    require_once TADTOOLS_PATH . '/formValidator.php';
     $formValidator = new formValidator('#myForm', true);
     $formValidator_code = $formValidator->render();
 
@@ -109,7 +109,7 @@ function get_block_id_opt($blockid = '')
     $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
     $option = '';
 
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //以下會產生這些變數： $ebsn , $blockid , $width , $height , $border , $note , $title , $uid , $update_date , $counter
         foreach ($all as $k => $v) {
             $$k = $v;
@@ -217,7 +217,7 @@ function list_tad_embed($show_function = 1)
 
     $all_content = [];
     $i = 0;
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //以下會產生這些變數： $ebsn , $blockid , $width , $height , $border , $note , $title , $uid , $update_date , $counter
         foreach ($all as $k => $v) {
             $$k = $v;
@@ -241,7 +241,7 @@ function list_tad_embed($show_function = 1)
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
         redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
     }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
     $sweet_alert = new sweet_alert();
     $sweet_alert->render('delete_tad_embed_func', 'main.php?op=delete_tad_embed&ebsn=', 'ebsn');
 }
@@ -257,9 +257,9 @@ function delete_tad_embed($ebsn = '')
 function select_block()
 {
     global $xoopsTpl;
-    $pageblock_handler = xoops_getModuleHandler('pageblock');
-    $allblocks = $pageblock_handler->getAllBlocks();
-    $allcustomblocks = $pageblock_handler->getAllCustomBlocks();
+    $pageblockHandler = xoops_getModuleHandler('pageblock');
+    $allblocks = $pageblockHandler->getAllBlocks();
+    $allcustomblocks = $pageblockHandler->getAllCustomBlocks();
     $arr = $allblocks + $allcustomblocks;
     $xoopsTpl->assign('arr', $arr);
 }
@@ -306,4 +306,4 @@ switch ($op) {
 }
 
 $xoopsTpl->assign('now_op', $op);
-include_once 'footer.php';
+require_once __DIR__ . '/footer.php';

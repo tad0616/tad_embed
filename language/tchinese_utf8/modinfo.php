@@ -1,5 +1,5 @@
 <?php
-include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
+require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
 define('_MI_TADEMBED_NAME', '嵌入區塊模組');
 define('_MI_TADEMBED_AUTHOR', '嵌入區塊模組');
 define('_MI_TADEMBED_CREDITS', 'tad');
