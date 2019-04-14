@@ -35,7 +35,7 @@ function tad_embed_form($ebsn = "")
     $xoopsTpl->assign('width', $width);
 
     //設定「height」欄位預設值
-    $height = (!isset($DBV['height'])) ? "300px" : $DBV['height'];
+    $height = (!isset($DBV['height'])) ? "800px" : $DBV['height'];
     $xoopsTpl->assign('height', $height);
 
     //設定「border」欄位預設值
@@ -137,7 +137,6 @@ function insert_tad_embed()
     $uid = ($xoopsUser) ? $xoopsUser->uid() : "";
 
     $myts    = MyTextSanitizer::getInstance();
-    $height  = (int) $_POST['height'];
     $border  = (int) $_POST['border'];
     $blockid = (int) $_POST['blockid'];
 
@@ -145,6 +144,7 @@ function insert_tad_embed()
     $width     = $myts->addSlashes($_POST['width']);
     $title     = $myts->addSlashes($_POST['title']);
     $note      = $myts->addSlashes($_POST['note']);
+    $height = $myts->addSlashes($_POST['height']);
 
     $options = implode("|", $_POST['options']);
     $options = $myts->addSlashes($options);
@@ -169,7 +169,6 @@ function update_tad_embed($ebsn = "")
     $uid = ($xoopsUser) ? $xoopsUser->uid() : "";
 
     $myts    = MyTextSanitizer::getInstance();
-    $height  = (int) $_POST['height'];
     $border  = (int) $_POST['border'];
     $blockid = (int) $_POST['blockid'];
 
@@ -177,6 +176,7 @@ function update_tad_embed($ebsn = "")
     $width     = $myts->addSlashes($_POST['width']);
     $title     = $myts->addSlashes($_POST['title']);
     $note      = $myts->addSlashes($_POST['note']);
+    $height = $myts->addSlashes($_POST['height']);
 
     $options = implode("|", $_POST['options']);
     $options = $myts->addSlashes($options);

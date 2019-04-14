@@ -1,3 +1,7 @@
+Tad Embed 2.3.2 (released from 2019-01-22)
+==========================================================
+1. Fixed the problem that the height could not be written to the unit.
+
 Tad Embed 2.3.1 (released from 2019-01-01)
 ==========================================================
 1. Support BootStrap4
