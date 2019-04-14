@@ -10,15 +10,16 @@ class Tad_EmbedCorePreload extends XoopsPreloadItem
     public static function eventCoreHeaderStart($args)
     {
         // die($_SERVER['PHP_SELF']);
-        if (strpos($_SERVER['PHP_SELF'], "tad_embed_demo.php") !== false) {
-            $GLOBALS['xoopsConfig']['theme_set_allowed'][] = "for_tad_embed_theme";
-            $_POST['xoops_theme_select']                   = "for_tad_embed_theme";
+        if (false !== mb_strpos($_SERVER['PHP_SELF'], 'tad_embed_demo.php')) {
+            $GLOBALS['xoopsConfig']['theme_set_allowed'][] = 'for_tad_embed_theme';
+            $_POST['xoops_theme_select'] = 'for_tad_embed_theme';
         } else {
             $_POST['xoops_theme_select'] = $GLOBALS['xoopsConfig']['theme_set'];
         }
     }
-    
-        // to add PSR-4 autoloader
+
+    // to add PSR-4 autoloader
+
     /**
      * @param $args
      */
