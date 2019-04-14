@@ -12,5 +12,3 @@ function xoops_module_install_tad_embed(&$module)
 
     return true;
 }
-
-

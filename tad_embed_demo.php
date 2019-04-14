@@ -1,46 +1,46 @@
 <?php
 // header_remove("X-Frame-Options: ALLOW-FROM");
 /*-----------引入檔案區--------------*/
-include_once "header.php";
+include_once 'header.php';
 $url = parse_url($_SERVER['HTTP_REFERER']);
 // die(var_dump($url));
 header("X-Frame-Options: ALLOW-FROM {$url['scheme']}://{$url['host']}/*");
-$xoopsOption['template_main'] = "tad_embed_demo.tpl";
-$xoopsConfig['theme_set']     = "blank_theme";
-include_once XOOPS_ROOT_PATH . "/header.php";
+$xoopsOption['template_main'] = 'tad_embed_demo.tpl';
+$xoopsConfig['theme_set'] = 'blank_theme';
+include_once XOOPS_ROOT_PATH . '/header.php';
 /*-----------function區--------------*/
-$ebsn = empty($_REQUEST['ebsn']) ? "" : (int) $_REQUEST['ebsn'];
+$ebsn = empty($_REQUEST['ebsn']) ? '' : (int) $_REQUEST['ebsn'];
 
 //$embed=get_tad_embed($ebsn);
 
 $block = blockShow($ebsn);
 
-$width_smarty  = empty($embed['width']) ? "" : "width: {$embed['width']};";
-$height_smarty = "";
-$border_smarty = empty($embed['border']) ? "" : "border: {$embed['border']}px solid gray;";
+$width_smarty = empty($embed['width']) ? '' : "width: {$embed['width']};";
+$height_smarty = '';
+$border_smarty = empty($embed['border']) ? '' : "border: {$embed['border']}px solid gray;";
 
 function blockShow($ebsn)
 {
     global $xoopsDB;
-    $bb     = get_tad_embed($ebsn);
-    $sql    = "select * from `" . $xoopsDB->prefix("newblocks") . "` where `bid` = '{$bb['blockid']}'";
+    $bb = get_tad_embed($ebsn);
+    $sql = 'select * from `' . $xoopsDB->prefix('newblocks') . "` where `bid` = '{$bb['blockid']}'";
     $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
 
     include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
     include_once XOOPS_ROOT_PATH . '/class/template.php';
-    $row            = $xoopsDB->fetchArray($result);
+    $row = $xoopsDB->fetchArray($result);
     $row['options'] = $bb['options'];
-    $row['title']   = $bb['title'];
+    $row['title'] = $bb['title'];
 
     $XoopsBlock = new XoopsBlock($row);
-    $template   = new XoopsTpl();
+    $template = new XoopsTpl();
 
     $template->caching = 0;
-    $tplName           = ($tplName = $XoopsBlock->getVar('template')) ? "db:$tplName" : "db:system_block_dummy.html";
+    $tplName = ($tplName = $XoopsBlock->getVar('template')) ? "db:$tplName" : 'db:system_block_dummy.html';
 
-    $cacheid = 'blk_' . $ebsn . "_" . md5($_SERVER['REQUEST_URI']);
+    $cacheid = 'blk_' . $ebsn . '_' . md5($_SERVER['REQUEST_URI']);
 
-    $block = "<base target=\"_blank\" />";
+    $block = '<base target="_blank" />';
     if (!$template->is_cached($tplName, $cacheid)) {
         //$xoopsLogger->addBlock( $XoopsBlock->getVar('title') );
         if (!($bresult = $XoopsBlock->buildBlock())) {
@@ -53,16 +53,16 @@ function blockShow($ebsn)
         $block .= $template->fetch($tplName, $cacheid);
     }
 
-    $now = date("Y-m-d H:i:s", xoops_getUserTimestamp(time()));
-    $sql = "update `" . $xoopsDB->prefix("tad_embed") . "` set `update_date` = '{$now}' , `http_referer`= '{$_SERVER["HTTP_REFERER"]}', `counter` = `counter` +1	 where `ebsn` = '{$ebsn}'";
+    $now = date('Y-m-d H:i:s', xoops_getUserTimestamp(time()));
+    $sql = 'update `' . $xoopsDB->prefix('tad_embed') . "` set `update_date` = '{$now}' , `http_referer`= '{$_SERVER['HTTP_REFERER']}', `counter` = `counter` +1	 where `ebsn` = '{$ebsn}'";
     $xoopsDB->queryF($sql);
 
     //$block=$template->display($tplName);
     return $block;
 }
 /*-----------秀出結果區--------------*/
-$xoopsTpl->assign("width", $width_smarty);
-$xoopsTpl->assign("height", $height_smarty);
-$xoopsTpl->assign("border", $border_smarty);
-$xoopsTpl->assign("content", $block);
+$xoopsTpl->assign('width', $width_smarty);
+$xoopsTpl->assign('height', $height_smarty);
+$xoopsTpl->assign('border', $border_smarty);
+$xoopsTpl->assign('content', $block);
 include_once XOOPS_ROOT_PATH . '/footer.php';

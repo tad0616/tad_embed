@@ -12,5 +12,3 @@ function xoops_module_update_tad_embed(&$module, $old_version)
 
     return true;
 }
-
-

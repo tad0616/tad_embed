@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Tad_embed;
+<?php
+
+namespace XoopsModules\Tad_embed;
 
 /*
  Utility Class Definition
@@ -28,7 +30,7 @@ class Utility
     public static function chk_chk1()
     {
         global $xoopsDB;
-        $sql    = "SELECT count(*) FROM " . $xoopsDB->prefix("tadtools_setup") . " WHERE tt_theme='for_tad_embed_theme'";
+        $sql = 'SELECT count(*) FROM ' . $xoopsDB->prefix('tadtools_setup') . " WHERE tt_theme='for_tad_embed_theme'";
         $result = $xoopsDB->query($sql);
         list($counter) = $xoopsDB->fetchRow($result);
         if (empty($counter)) {
@@ -38,9 +40,8 @@ class Utility
         return false;
     }
 
-
     //建立目錄
-    public static function mk_dir($dir = "")
+    public static function mk_dir($dir = '')
     {
         //若無目錄名稱秀出警告訊息
         if (empty($dir)) {
@@ -51,7 +52,9 @@ class Utility
         if (!is_dir($dir)) {
             umask(000);
             //若建立失敗秀出警告訊息
-            mkdir($dir, 0777);
+            if (!mkdir($dir, 0777) && !is_dir($dir)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));
+            }
         }
     }
 
@@ -67,28 +70,30 @@ class Utility
         }
 
         while ($file = readdir($dir_handle)) {
-            if ($file != "." && $file != "..") {
-                if (!is_dir($dirname . "/" . $file)) {
-                    unlink($dirname . "/" . $file);
+            if ('.' !== $file && '..' !== $file) {
+                if (!is_dir($dirname . '/' . $file)) {
+                    unlink($dirname . '/' . $file);
                 } else {
                     self::delete_directory($dirname . '/' . $file);
                 }
-
             }
         }
         closedir($dir_handle);
         rmdir($dirname);
+
         return true;
     }
 
     //拷貝目錄
-    public static function full_copy($source = "", $target = "")
+    public static function full_copy($source = '', $target = '')
     {
         if (is_dir($source)) {
-            @mkdir($target);
+            if (!mkdir($target) && !is_dir($target)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $target));
+            }
             $d = dir($source);
             while (false !== ($entry = $d->read())) {
-                if ($entry == '.' || $entry == '..') {
+                if ('.' === $entry || '..' === $entry) {
                     continue;
                 }
 
@@ -109,7 +114,7 @@ class Utility
     public static function go_update1()
     {
         global $xoopsDB;
-        $sql = "INSERT INTO " . $xoopsDB->prefix("tadtools_setup") . " (`tt_theme`, `tt_use_bootstrap`, `tt_bootstrap_color`, `tt_theme_kind`) VALUES ('for_tad_embed_theme', '0',  'bootstrap3', 'html'),";
+        $sql = 'INSERT INTO ' . $xoopsDB->prefix('tadtools_setup') . " (`tt_theme`, `tt_use_bootstrap`, `tt_bootstrap_color`, `tt_theme_kind`) VALUES ('for_tad_embed_theme', '0',  'bootstrap3', 'html'),";
         $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, mysql_error());
 
         return true;
@@ -120,11 +125,13 @@ class Utility
         if (!rename($oldfile, $newfile)) {
             if (copy($oldfile, $newfile)) {
                 unlink($oldfile);
+
                 return true;
             }
+
             return false;
         }
+
         return true;
     }
-
 }
