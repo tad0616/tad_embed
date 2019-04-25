@@ -1,4 +1,6 @@
 <?php
+use XoopsModules\Tadtools\Utility;
+
 /*-----------引入檔案區--------------*/
 include_once 'header.php';
 $xoopsOption['template_main'] = 'tad_embed_index.tpl';
@@ -10,7 +12,7 @@ function list_tad_embed($ebsn)
     global $isAdmin, $xoopsDB, $xoopsTpl;
 
     $sql = 'SELECT `ebsn`, `title` FROM `' . $xoopsDB->prefix('tad_embed') . '` ';
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     while ($all = $xoopsDB->fetchArray($result)) {
         $menu[] = $all;
@@ -31,8 +33,8 @@ function list_tad_embed($ebsn)
 
     //高亮度語法
     $syntaxhighlighter_code = '';
-    if (file_exists(TADTOOLS_PATH . '/syntaxhighlighter.php')) {
-        include_once TADTOOLS_PATH . '/syntaxhighlighter.php';
+    if (file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/syntaxhighlighter.php')) {
+        include_once XOOPS_ROOT_PATH . '/modules/tadtools/syntaxhighlighter.php';
         $syntaxhighlighter = new syntaxhighlighter();
         $syntaxhighlighter_code = $syntaxhighlighter->render();
     }
@@ -55,7 +57,7 @@ function list_tad_embed($ebsn)
 
 /*-----------執行動作判斷區----------*/
 $op = empty($_REQUEST['op']) ? '' : $_REQUEST['op'];
-$ebsn = empty($_REQUEST['ebsn']) ? '' : (int)$_REQUEST['ebsn'];
+$ebsn = empty($_REQUEST['ebsn']) ? '' : (int) $_REQUEST['ebsn'];
 
 switch ($op) {
     default:
@@ -64,7 +66,7 @@ switch ($op) {
 }
 
 /*-----------秀出結果區--------------*/
-$xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 
 include_once XOOPS_ROOT_PATH . '/footer.php';

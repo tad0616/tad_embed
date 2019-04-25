@@ -1,4 +1,6 @@
 <?php
+use XoopsModules\Tadtools\Utility;
+
 /*-----------引入檔案區--------------*/
 $xoopsOption['template_main'] = 'tad_embed_adm_main.tpl';
 include_once 'header.php';
@@ -47,7 +49,7 @@ function tad_embed_form($ebsn = '')
     $xoopsTpl->assign('note', $note);
 
     $sql = 'select * from `' . $xoopsDB->prefix('newblocks') . "` where `bid` = '{$blockid}'";
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     $row = $xoopsDB->fetchArray($result);
 
     //設定「title」欄位預設值
@@ -79,10 +81,10 @@ function tad_embed_form($ebsn = '')
     //$op="replace_tad_embed";
     $xoopsTpl->assign('op', $op);
 
-    if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
+    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/formValidator.php')) {
         redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
     }
-    include_once TADTOOLS_PATH . '/formValidator.php';
+    include_once XOOPS_ROOT_PATH . '/modules/tadtools/formValidator.php';
     $formValidator = new formValidator('#myForm', true);
     $formValidator_code = $formValidator->render();
 
@@ -106,7 +108,7 @@ function get_block_id_opt($blockid = '')
     global $xoopsDB, $xoopsModule;
 
     $sql = 'SELECT * FROM `' . $xoopsDB->prefix('newblocks') . '` WHERE visible=1';
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     $option = '';
 
     while ($all = $xoopsDB->fetchArray($result)) {
@@ -126,7 +128,7 @@ function add_tad_embed_counter($ebsn = '')
 {
     global $xoopsDB, $xoopsModule;
     $sql = 'update `' . $xoopsDB->prefix('tad_embed') . "` set `counter` = `counter` + 1 where `ebsn` = '{$ebsn}'";
-    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 }
 
 //新增資料到tad_embed中
@@ -154,7 +156,7 @@ function insert_tad_embed()
     $sql = 'insert into `' . $xoopsDB->prefix('tad_embed') . "`
 	(`blockid` , `width` , `height` , `border` , `note` , `title` , `options` ,`scrolling`  , `uid` , `update_date` , `http_referer`, `counter`)
 	values('{$blockid}' , '{$width}' , '{$height}' , '{$border}' , '{$note}' , '{$title}' , '{$options}' , '{$scrolling}' , '{$uid}' , '{$now}' , '' , 0)";
-    $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     //取得最後新增資料的流水編號
     $ebsn = $xoopsDB->getInsertId();
@@ -195,7 +197,7 @@ function update_tad_embed($ebsn = '')
     `scrolling` = '{$scrolling}' ,
     `uid` = '{$uid}'
 	where `ebsn` = '$ebsn'";
-    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     return $ebsn;
 }
@@ -207,13 +209,13 @@ function list_tad_embed($show_function = 1)
 
     $sql = 'SELECT * FROM `' . $xoopsDB->prefix('tad_embed') . '` ORDER BY update_date DESC';
 
-    //getPageBar($原sql語法, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
-    $PageBar = getPageBar($sql, 20, 10);
+    //Utility::getPageBar($原sql語法, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
+    $PageBar = Utility::getPageBar($sql, 20, 10);
     $bar = $PageBar['bar'];
     $sql = $PageBar['sql'];
     $total = $PageBar['total'];
 
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     $all_content = [];
     $i = 0;
@@ -251,7 +253,7 @@ function delete_tad_embed($ebsn = '')
 {
     global $xoopsDB, $isAdmin;
     $sql = 'delete from `' . $xoopsDB->prefix('tad_embed') . "` where `ebsn` = '{$ebsn}'";
-    $xoopsDB->queryF($sql) or web_error($sql, __FILE__, __LINE__);
+    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 }
 
 function select_block()
