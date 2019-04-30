@@ -1,5 +1,5 @@
 <?php
-//需加入模組語系
+xoops_loadLanguage('main', 'tadtools');
 define('_TAD_NEED_TADTOOLS', 'This module needs TadTools module. You can download TadTools from <a href="http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50" target="_blank">Tad Textbook </a>. ');
 
 define('_MD_TADEMBED_SMNAME1', 'embedded block');
