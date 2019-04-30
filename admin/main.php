@@ -1,6 +1,7 @@
 <?php
+use XoopsModules\Tadtools\FormValidator;
+use XoopsModules\Tadtools\SweetAlert;
 use XoopsModules\Tadtools\Utility;
-
 /*-----------引入檔案區--------------*/
 $xoopsOption['template_main'] = 'tad_embed_adm_main.tpl';
 include_once 'header.php';
@@ -81,12 +82,8 @@ function tad_embed_form($ebsn = '')
     //$op="replace_tad_embed";
     $xoopsTpl->assign('op', $op);
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/formValidator.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/formValidator.php';
-    $formValidator = new formValidator('#myForm', true);
-    $formValidator_code = $formValidator->render();
+    $FormValidator = new FormValidator('#myForm', true);
+    $FormValidator->render();
 
     $row['options'] = $options;
     $row['title'] = $title;
@@ -139,7 +136,7 @@ function insert_tad_embed()
     //取得使用者編號
     $uid = ($xoopsUser) ? $xoopsUser->uid() : '';
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $border = (int) $_POST['border'];
     $blockid = (int) $_POST['blockid'];
 
@@ -172,7 +169,7 @@ function update_tad_embed($ebsn = '')
     //取得使用者編號
     $uid = ($xoopsUser) ? $xoopsUser->uid() : '';
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $border = (int) $_POST['border'];
     $blockid = (int) $_POST['blockid'];
 
@@ -240,12 +237,8 @@ function list_tad_embed($show_function = 1)
     $xoopsTpl->assign('total', $total);
     $xoopsTpl->assign('bar', $bar);
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
-    $sweet_alert = new sweet_alert();
-    $sweet_alert->render('delete_tad_embed_func', 'main.php?op=delete_tad_embed&ebsn=', 'ebsn');
+    $SweetAlert = new SweetAlert();
+    $SweetAlert->render('delete_tad_embed_func', 'main.php?op=delete_tad_embed&ebsn=', 'ebsn');
 }
 
 //刪除tad_embed某筆資料資料
@@ -306,6 +299,6 @@ switch ($op) {
         break;
         /*---判斷動作請貼在上方---*/
 }
-
+$xoTheme->addStylesheet('modules/tadtools/css/font-awesome/css/font-awesome.css');
 $xoopsTpl->assign('now_op', $op);
 include_once 'footer.php';

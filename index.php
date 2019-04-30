@@ -1,6 +1,7 @@
 <?php
+use XoopsModules\Tadtools\SweetAlert;
+use XoopsModules\Tadtools\SyntaxHighlighter;
 use XoopsModules\Tadtools\Utility;
-
 /*-----------引入檔案區--------------*/
 include_once 'header.php';
 $xoopsOption['template_main'] = 'tad_embed_index.tpl';
@@ -32,26 +33,18 @@ function list_tad_embed($ebsn)
     $border_smarty = empty($embed['border']) ? 'border:none;' : "border: {$embed['border']}px solid gray;";
 
     //高亮度語法
-    $syntaxhighlighter_code = '';
-    if (file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/syntaxhighlighter.php')) {
-        include_once XOOPS_ROOT_PATH . '/modules/tadtools/syntaxhighlighter.php';
-        $syntaxhighlighter = new syntaxhighlighter();
-        $syntaxhighlighter_code = $syntaxhighlighter->render();
-    }
+
+    $SyntaxHighlighter = new SyntaxHighlighter();
+    $SyntaxHighlighter->render();
 
     $xoopsTpl->assign('width_smarty', $width_smarty);
     $xoopsTpl->assign('height_smarty', $height_smarty);
     $xoopsTpl->assign('border_smarty', $border_smarty);
-    $xoopsTpl->assign('syntaxhighlighter_code', $syntaxhighlighter_code);
     $xoopsTpl->assign('embed', $embed);
 
     if ($isAdmin) {
-        if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
-            redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-        }
-        include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
-        $sweet_alert = new sweet_alert();
-        $sweet_alert->render('delete_tad_embed_func', 'admin/main.php?op=delete_tad_embed&ebsn=', 'ebsn');
+        $SweetAlert = new SweetAlert();
+        $SweetAlert->render('delete_tad_embed_func', 'admin/main.php?op=delete_tad_embed&ebsn=', 'ebsn');
     }
 }
 
