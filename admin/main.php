@@ -88,11 +88,11 @@ function tad_embed_form($ebsn = '')
     $row['options'] = $options;
     $row['title'] = $title;
 
-    $Block = new XoopsBlock($row);
+    $Block = new \XoopsBlock($row);
 
     $options_form = $Block->getOptions();
     if ($options_form) {
-        $XoopsFormLabel = new XoopsFormLabel(_MA_TADEMBED_BLOCK_OPTIONS, $options_form);
+        $XoopsFormLabel = new \XoopsFormLabel(_MA_TADEMBED_BLOCK_OPTIONS, $options_form);
         $options = $XoopsFormLabel->render();
     }
 

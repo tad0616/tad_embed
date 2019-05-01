@@ -1,13 +1,13 @@
 <?php
 /*
- You may not change or alter any portion of this comment or credits
- of supporting developers from this source code or any supporting source code
- which is considered copyrighted (c) material of the original comment or credit authors.
+You may not change or alter any portion of this comment or credits
+of supporting developers from this source code or any supporting source code
+which is considered copyrighted (c) material of the original comment or credit authors.
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*/
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /**
  * @copyright       The XUUPS Project http://www.xuups.com
@@ -50,11 +50,11 @@ class Tad_EmbedPageBlock extends XoopsObject
     {
         include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
         if (0 == $blockid) {
-            $this->block = new XoopsBlock($this->getVar('blockid'));
+            $this->block = new \XoopsBlock($this->getVar('blockid'));
             $this->block->assignVar('options', $this->getVar('options', 'n'));
             $this->block->assignVar('title', $this->getVar('title', 'n'));
         } else {
-            $this->block = new XoopsBlock($blockid);
+            $this->block = new \XoopsBlock($blockid);
             $this->block->assignVar('options', $this->block->getVar('options', 'n'));
             $this->block->assignVar('title', $this->block->getVar('title', 'n'));
         }
