@@ -32,11 +32,11 @@ function blockShow($ebsn)
     $row['options'] = $bb['options'];
     $row['title'] = $bb['title'];
 
-    $XoopsBlock = new XoopsBlock($row);
-    $template = new XoopsTpl();
+    $XoopsBlock = new \XoopsBlock($row);
+    $template = new \XoopsTpl();
 
     $template->caching = 0;
-    $tplName = ($tplName = $XoopsBlock->getVar('template')) ? "db:$tplName" : 'db:system_block_dummy.html';
+    $tplName = ($tplName = $XoopsBlock->getVar('template')) ? "db:$tplName" : 'db:system_block_dummy.tpl';
 
     $cacheid = 'blk_' . $ebsn . '_' . md5($_SERVER['REQUEST_URI']);
 

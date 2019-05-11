@@ -9,7 +9,7 @@ if (isset($_REQUEST['op'])) {
     exit;
 }
 
-$pageblockHandler = xoops_getModuleHandler('pageblock');
+$pageblockHandler = \XoopsModules\Tad_embed\Helper::getInstance()->getHandler('PageBlock');
 
 switch ($op) {
     case 'save':
@@ -80,7 +80,7 @@ switch ($op) {
             }
         } else {
             xoops_cp_header();
-            xoops_confirm(['ok' => 1, 'ebsn' => $_REQUEST['ebsn'], 'op' => 'delete'], 'block.php', sprintf(_MA_TADEMBED_RUSUREDEL, $obj->getVar('title')));
+            xoops_confirm(['ok' => 1, 'ebsn' => $_REQUEST['ebsn'], 'op' => 'delete'], 'BlockForm.php', sprintf(_MA_TADEMBED_RUSUREDEL, $obj->getVar('title')));
             xoops_cp_footer();
         }
         break;

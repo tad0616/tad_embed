@@ -80,7 +80,7 @@ function tad_embed_form($ebsn = '')
     $xoopsTpl->assign('op', $op);
 
     if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
+        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
     require_once TADTOOLS_PATH . '/formValidator.php';
     $formValidator = new formValidator('#myForm', true);
@@ -89,11 +89,11 @@ function tad_embed_form($ebsn = '')
     $row['options'] = $options;
     $row['title'] = $title;
 
-    $Block = new XoopsBlock($row);
+    $Block = new \XoopsBlock($row);
 
     $options_form = $Block->getOptions();
     if ($options_form) {
-        $XoopsFormLabel = new XoopsFormLabel(_MA_TADEMBED_BLOCK_OPTIONS, $options_form);
+        $XoopsFormLabel = new \XoopsFormLabel(_MA_TADEMBED_BLOCK_OPTIONS, $options_form);
         $options = $XoopsFormLabel->render();
     }
 
@@ -225,9 +225,9 @@ function list_tad_embed($show_function = 1)
         $all_content[$i] = $all;
 
         $border = (1 == $border) ? _YES : _NO;
-        $uid_name = XoopsUser::getUnameFromId($uid, 1);
+        $uid_name = \XoopsUser::getUnameFromId($uid, 1);
         if (empty($uid_name)) {
-            $uid_name = XoopsUser::getUnameFromId($uid, 0);
+            $uid_name = \XoopsUser::getUnameFromId($uid, 0);
         }
         $all_content[$i]['uid_name'] = $uid_name;
         $all_content[$i]['border'] = $border;
@@ -239,7 +239,7 @@ function list_tad_embed($show_function = 1)
     $xoopsTpl->assign('bar', $bar);
 
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
+        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
     require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
     $sweet_alert = new sweet_alert();
@@ -257,7 +257,7 @@ function delete_tad_embed($ebsn = '')
 function select_block()
 {
     global $xoopsTpl;
-    $pageblockHandler = xoops_getModuleHandler('pageblock');
+    $pageblockHandler = \XoopsModules\Tad_embed\Helper::getInstance()->getHandler('PageBlock');
     $allblocks = $pageblockHandler->getAllBlocks();
     $allcustomblocks = $pageblockHandler->getAllCustomBlocks();
     $arr = $allblocks + $allcustomblocks;
