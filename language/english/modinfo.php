@@ -1,6 +1,5 @@
 <?php
 xoops_loadLanguage('modinfo_common', 'tadtools');
-
 define('_MI_TADEMBED_NAME', 'embedded block module');
 define('_MI_TADEMBED_AUTHOR', 'embedded block module');
 define('_MI_TADEMBED_CREDITS', 'tad');

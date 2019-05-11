@@ -1,5 +1,6 @@
 <?php
-// header_remove("X-Frame-Options: ALLOW-FROM");
+use XoopsModules\Tadtools\Utility;
+
 /*-----------引入檔案區--------------*/
 require_once __DIR__ . '/header.php';
 $url = parse_url(\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
@@ -24,7 +25,7 @@ function blockShow($ebsn)
     global $xoopsDB;
     $bb = get_tad_embed($ebsn);
     $sql = 'select * from `' . $xoopsDB->prefix('newblocks') . "` where `bid` = '{$bb['blockid']}'";
-    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
     require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
     require_once XOOPS_ROOT_PATH . '/class/template.php';
