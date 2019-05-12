@@ -3,17 +3,17 @@ use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\SweetAlert;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = 'tad_embed_adm_main.tpl';
-include_once 'header.php';
-include_once '../function.php';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_adm_main.tpl';
+require_once __DIR__ . '/header.php';
+require_once dirname(__DIR__) . '/function.php';
 
 /*-----------function區--------------*/
 //tad_embed編輯表單
 function tad_embed_form($ebsn = '')
 {
     global $xoopsDB, $xoopsUser, $xoopsTpl;
-    include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-    include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
     //include_once(XOOPS_ROOT_PATH."/class/xoopseditor/xoopseditor.php");
 
     //抓取預設值
@@ -30,7 +30,7 @@ function tad_embed_form($ebsn = '')
     $xoopsTpl->assign('ebsn', $ebsn);
 
     //設定「blockid」欄位預設值
-    $blockid = (!isset($DBV['blockid'])) ? (int) $_REQUEST['blockid'] : $DBV['blockid'];
+    $blockid = (!isset($DBV['blockid'])) ? (int)$_REQUEST['blockid'] : $DBV['blockid'];
     $xoopsTpl->assign('blockid', $blockid);
 
     //設定「width」欄位預設值
@@ -108,7 +108,7 @@ function get_block_id_opt($blockid = '')
     $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     $option = '';
 
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //以下會產生這些變數： $ebsn , $blockid , $width , $height , $border , $note , $title , $uid , $update_date , $counter
         foreach ($all as $k => $v) {
             $$k = $v;
@@ -216,7 +216,7 @@ function list_tad_embed($show_function = 1)
 
     $all_content = [];
     $i = 0;
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //以下會產生這些變數： $ebsn , $blockid , $width , $height , $border , $note , $title , $uid , $update_date , $counter
         foreach ($all as $k => $v) {
             $$k = $v;
@@ -224,9 +224,9 @@ function list_tad_embed($show_function = 1)
         $all_content[$i] = $all;
 
         $border = (1 == $border) ? _YES : _NO;
-        $uid_name = XoopsUser::getUnameFromId($uid, 1);
+        $uid_name = \XoopsUser::getUnameFromId($uid, 1);
         if (empty($uid_name)) {
-            $uid_name = XoopsUser::getUnameFromId($uid, 0);
+            $uid_name = \XoopsUser::getUnameFromId($uid, 0);
         }
         $all_content[$i]['uid_name'] = $uid_name;
         $all_content[$i]['border'] = $border;
@@ -252,16 +252,16 @@ function delete_tad_embed($ebsn = '')
 function select_block()
 {
     global $xoopsTpl;
-    $pageblock_handler = xoops_getModuleHandler('pageblock');
-    $allblocks = $pageblock_handler->getAllBlocks();
-    $allcustomblocks = $pageblock_handler->getAllCustomBlocks();
+    $pageblockHandler = \XoopsModules\Tad_embed\Helper::getInstance()->getHandler('PageBlock');
+    $allblocks = $pageblockHandler->getAllBlocks();
+    $allcustomblocks = $pageblockHandler->getAllCustomBlocks();
     $arr = $allblocks + $allcustomblocks;
     $xoopsTpl->assign('arr', $arr);
 }
 
 /*-----------執行動作判斷區----------*/
 $op = empty($_REQUEST['op']) ? '' : $_REQUEST['op'];
-$ebsn = empty($_REQUEST['ebsn']) ? '' : (int) $_REQUEST['ebsn'];
+$ebsn = empty($_REQUEST['ebsn']) ? '' : (int)$_REQUEST['ebsn'];
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/
@@ -301,4 +301,4 @@ switch ($op) {
 }
 $xoTheme->addStylesheet('modules/tadtools/css/font-awesome/css/font-awesome.css');
 $xoopsTpl->assign('now_op', $op);
-include_once 'footer.php';
+require_once __DIR__ . '/footer.php';

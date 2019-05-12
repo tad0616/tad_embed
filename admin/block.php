@@ -1,6 +1,6 @@
 <?php
-include_once 'header.php';
-include_once '../function.php';
+require_once __DIR__ . '/header.php';
+require_once dirname(__DIR__) . '/function.php';
 
 if (isset($_REQUEST['op'])) {
     $op = $_REQUEST['op'];
@@ -9,15 +9,15 @@ if (isset($_REQUEST['op'])) {
     exit;
 }
 
-$pageblock_handler = xoops_getModuleHandler('pageblock');
+$pageblockHandler = \XoopsModules\Tad_embed\Helper::getInstance()->getHandler('PageBlock');
 
 switch ($op) {
     case 'save':
 
         if (!isset($_POST['ebsn'])) {
-            $block = $pageblock_handler->create();
-        } elseif (!$block = $pageblock_handler->get($_POST['ebsn'])) {
-            $block = $pageblock_handler->create();
+            $block = $pageblockHandler->create();
+        } elseif (!$block = $pageblockHandler->get($_POST['ebsn'])) {
+            $block = $pageblockHandler->create();
         }
         $block->setVar('ebsn', $_POST['ebsn']);
         $block->setVar('blockid', $_POST['blockid']);
@@ -44,7 +44,7 @@ switch ($op) {
             $block->setVar('options', '');
         }
 
-        if ($pageblock_handler->insert($block)) {
+        if ($pageblockHandler->insert($block)) {
             redirect_header('index.php?ebsn=' . $block->getVar('ebsn'), 1, _MA_TADEMBED_SUCCESS);
             exit;
         }
@@ -53,14 +53,14 @@ switch ($op) {
     case 'edit':
 
         if ('new' === $op) {
-            $block = $pageblock_handler->create();
+            $block = $pageblockHandler->create();
             $block->setVar('blockid', $_POST['blockid']);
             $block->setVar('width', '100%');
             $block->setVar('height', '350px');
             $block->setVar('update_date', time());
             $block->setBlock($_POST['blockid']);
         } else {
-            $block = $pageblock_handler->get($_REQUEST['ebsn']);
+            $block = $pageblockHandler->get($_REQUEST['ebsn']);
             $block->setBlock();
         }
 
@@ -69,21 +69,21 @@ switch ($op) {
 
         break;
     case 'delete':
-        $obj = $pageblock_handler->get($_REQUEST['ebsn']);
+        $obj = $pageblockHandler->get($_REQUEST['ebsn']);
         if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
-            if ($pageblock_handler->delete($obj)) {
+            if ($pageblockHandler->delete($obj)) {
                 redirect_header('index.php?ebsn=' . $obj->getVar('ebsn'), 3, sprintf(_MA_TADEMBED_DELETEDSUCCESS, $obj->getVar('title')));
             } else {
                 xoops_cp_header();
-                $main = implode('<br />', $obj->getErrors());
+                $main = implode('<br>', $obj->getErrors());
                 xoops_cp_footer();
             }
         } else {
             xoops_cp_header();
-            xoops_confirm(['ok' => 1, 'ebsn' => $_REQUEST['ebsn'], 'op' => 'delete'], 'block.php', sprintf(_MA_TADEMBED_RUSUREDEL, $obj->getVar('title')));
+            xoops_confirm(['ok' => 1, 'ebsn' => $_REQUEST['ebsn'], 'op' => 'delete'], 'BlockForm.php', sprintf(_MA_TADEMBED_RUSUREDEL, $obj->getVar('title')));
             xoops_cp_footer();
         }
         break;
 }
 
-include_once 'footer.php';
+require_once __DIR__ . '/footer.php';

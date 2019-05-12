@@ -3,9 +3,9 @@ use XoopsModules\Tadtools\SweetAlert;
 use XoopsModules\Tadtools\SyntaxHighlighter;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
-include_once 'header.php';
+require_once __DIR__ . '/header.php';
 $xoopsOption['template_main'] = 'tad_embed_page.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------function區--------------*/
 function list_tad_embed($ebsn)
@@ -15,7 +15,7 @@ function list_tad_embed($ebsn)
     $sql = 'SELECT `ebsn`, `title` FROM `' . $xoopsDB->prefix('tad_embed') . '` ';
     $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         $menu[] = $all;
     }
     $xoopsTpl->assign('menu', $menu);
@@ -49,7 +49,7 @@ function list_tad_embed($ebsn)
 
 /*-----------執行動作判斷區----------*/
 $op = empty($_REQUEST['op']) ? '' : $_REQUEST['op'];
-$ebsn = empty($_REQUEST['ebsn']) ? '' : (int) $_REQUEST['ebsn'];
+$ebsn = empty($_REQUEST['ebsn']) ? '' : (int)$_REQUEST['ebsn'];
 
 switch ($op) {
     default:
@@ -61,4 +61,4 @@ switch ($op) {
 $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';
