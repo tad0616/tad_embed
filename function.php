@@ -2,7 +2,10 @@
 use XoopsModules\Tadtools\Utility;
 xoops_loadLanguage('main', 'tadtools');
 
-/********************* 自訂函數 *********************/
+/********************* 自訂函數 ********************
+ * @param string $ebsn
+ * @return array|false|void
+ */
 
 //以流水號取得某筆tad_embed資料
 function get_tad_embed($ebsn = '')
@@ -19,7 +22,14 @@ function get_tad_embed($ebsn = '')
     return $data;
 }
 
-/********************* 預設函數 *********************/
+/********************* 預設函數 ********************
+ * @param string $title
+ * @param string $main
+ * @param string $kind
+ * @param string $style
+ * @param string $other
+ * @return string
+ */
 //圓角文字框
 function div_3d($title = '', $main = '', $kind = 'raised', $style = '', $other = '')
 {

@@ -65,7 +65,7 @@ class PageBlock extends \XoopsObject
     /**
      * Get the form for adding or editing blocks
      *
-     * @return PageBlockForm
+     * @return \XoopsModules\Tad_embed\BlockForm
      */
     public function getForm()
     {
