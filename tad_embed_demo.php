@@ -10,7 +10,10 @@ $GLOBALS['xoopsOption']['template_main'] = 'tad_embed_demo.tpl';
 $xoopsConfig['theme_set'] = 'blank_theme';
 require_once XOOPS_ROOT_PATH . '/header.php';
 /*-----------function區--------------*/
-$ebsn = empty($_REQUEST['ebsn']) ? '' : (int) $_REQUEST['ebsn'];
+
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+$op = system_CleanVars($_REQUEST, 'op', '', 'string');
+$ebsn = system_CleanVars($_REQUEST, 'ebsn', 0, 'int');
 
 //$embed=get_tad_embed($ebsn);
 
