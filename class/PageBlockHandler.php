@@ -2,6 +2,7 @@
 
 namespace XoopsModules\Tad_embed;
 
+use XoopsModules\Tad_embed;
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -37,7 +38,7 @@ class PageBlockHandler extends \XoopsPersistableObjectHandler
      *
      * @param int $blockid
      *
-     * @return Tad_EmbedBlock|false
+     * @return Tad_Embed\PageBlock|false
      */
     public function newPageBlock($blockid)
     {

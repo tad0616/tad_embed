@@ -38,7 +38,7 @@ function tad_embed_form($ebsn = '')
     $xoopsTpl->assign('width', $width);
 
     //設定「height」欄位預設值
-    $height = (!isset($DBV['height'])) ? "800px" : $DBV['height'];
+    $height = (!isset($DBV['height'])) ? '800px' : $DBV['height'];
     $xoopsTpl->assign('height', $height);
 
     //設定「border」欄位預設值
