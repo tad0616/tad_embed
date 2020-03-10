@@ -21,29 +21,3 @@ function get_tad_embed($ebsn = '')
 
     return $data;
 }
-
-/********************* 預設函數 ********************
- * @param string $title
- * @param string $main
- * @param string $kind
- * @param string $style
- * @param string $other
- * @return string
- */
-//圓角文字框
-function div_3d($title = '', $main = '', $kind = 'raised', $style = '', $other = '')
-{
-    $main = "<table style='width:auto;{$style}'><tr><td>
-	<div class='{$kind}'>
-	<h1>$title</h1>
-	$other
-	<b class='b1'></b><b class='b2'></b><b class='b3'></b><b class='b4'></b>
-	<div class='boxcontent'>
- 	$main
-	</div>
-	<b class='b4b'></b><b class='b3b'></b><b class='b2b'></b><b class='b1b'></b>
-	</div>
-	</td></tr></table>";
-
-    return $main;
-}
