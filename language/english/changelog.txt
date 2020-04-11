@@ -1,3 +1,7 @@
+Tad Embed 2.3.5 (2020-04-11 released)
+===================================================
+1. Amendments to the accessibility 2.0 AA standard (add sample page title)
+
 Tad Embed 2.3.4 (2020-03-14 released)
 ===================================================
 1. Correction for accessibility 2.0 AA standard
