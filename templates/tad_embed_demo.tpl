@@ -1,2 +1,4 @@
-<{assign var=this_file value=$smarty.template|basename|replace:'db:':''}>
-<{includeq file="$xoops_rootpath/modules/$xoops_dirname/templates/b4.tpl"}>
+<h2 style="display:none;">embed demo</h2>
+<div style="<{$width}><{$height}><{$border}>">
+<{$content}>
+</div>

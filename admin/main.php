@@ -1,4 +1,5 @@
 <?php
+use Xmf\Request;
 use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\SweetAlert;
 use XoopsModules\Tadtools\Utility;
@@ -202,7 +203,7 @@ function update_tad_embed($ebsn = '')
 //列出所有tad_embed資料
 function list_tad_embed($show_function = 1)
 {
-    global $xoopsDB, $xoopsModule, $isAdmin, $xoopsTpl;
+    global $xoopsDB, $xoopsModule, $xoopsTpl;
 
     $sql = 'SELECT * FROM `' . $xoopsDB->prefix('tad_embed') . '` ORDER BY update_date DESC';
 
@@ -244,7 +245,7 @@ function list_tad_embed($show_function = 1)
 //刪除tad_embed某筆資料資料
 function delete_tad_embed($ebsn = '')
 {
-    global $xoopsDB, $isAdmin;
+    global $xoopsDB;
     $sql = 'delete from `' . $xoopsDB->prefix('tad_embed') . "` where `ebsn` = '{$ebsn}'";
     $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 }
@@ -260,9 +261,8 @@ function select_block()
 }
 
 /*-----------執行動作判斷區----------*/
-require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op = system_CleanVars($_REQUEST, 'op', '', 'string');
-$ebsn = system_CleanVars($_REQUEST, 'ebsn', 0, 'int');
+$op = Request::getString('op');
+$ebsn = Request::getInt('ebsn');
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/

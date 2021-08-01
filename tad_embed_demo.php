@@ -1,4 +1,5 @@
 <?php
+use Xmf\Request;
 use XoopsModules\Tadtools\Utility;
 
 /*-----------引入檔案區--------------*/
@@ -11,9 +12,8 @@ $xoopsConfig['theme_set'] = 'blank_theme';
 require_once XOOPS_ROOT_PATH . '/header.php';
 /*-----------function區--------------*/
 
-require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op = system_CleanVars($_REQUEST, 'op', '', 'string');
-$ebsn = system_CleanVars($_REQUEST, 'ebsn', 0, 'int');
+$op = Request::getString('op');
+$ebsn = Request::getInt('ebsn');
 
 //$embed=get_tad_embed($ebsn);
 

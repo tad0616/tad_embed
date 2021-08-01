@@ -1,4 +1,5 @@
 <?php
+use Xmf\Request;
 use XoopsModules\Tadtools\SweetAlert;
 use XoopsModules\Tadtools\SyntaxHighlighter;
 use XoopsModules\Tadtools\Utility;
@@ -10,7 +11,7 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 /*-----------function區--------------*/
 function list_tad_embed($ebsn)
 {
-    global $isAdmin, $xoopsDB, $xoopsTpl;
+    global $xoopsDB, $xoopsTpl;
 
     $sql = 'SELECT `ebsn`, `title` FROM `' . $xoopsDB->prefix('tad_embed') . '` ';
     $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
@@ -42,16 +43,15 @@ function list_tad_embed($ebsn)
     $xoopsTpl->assign('border_smarty', $border_smarty);
     $xoopsTpl->assign('embed', $embed);
 
-    if ($isAdmin) {
+    if ($_SESSION['tad_embed_adm']) {
         $SweetAlert = new SweetAlert();
         $SweetAlert->render('delete_tad_embed_func', 'admin/main.php?op=delete_tad_embed&ebsn=', 'ebsn');
     }
 }
 
 /*-----------執行動作判斷區----------*/
-require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op = system_CleanVars($_REQUEST, 'op', '', 'string');
-$ebsn = system_CleanVars($_REQUEST, 'ebsn', 0, 'int');
+$op = Request::getString('op');
+$ebsn = Request::getInt('ebsn');
 
 switch ($op) {
     default:
@@ -61,6 +61,4 @@ switch ($op) {
 
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
-$xoopsTpl->assign('isAdmin', $isAdmin);
-
 require_once XOOPS_ROOT_PATH . '/footer.php';
