@@ -53,7 +53,7 @@
 
   <{if $now_op=="select_block"}>
     <form action="main.php" method="post" id="myForm" class="form-horizontal" role="form">
-      <div class="form-group row">
+      <div class="form-group row mb-3">
         <label class="col-sm-2 col-form-label text-sm-right control-label">
           <{$smarty.const._MA_TADEMBED_SELECT_BLOCK}>
         </label>
@@ -94,7 +94,7 @@
 
     <form action="main.php" method="post" id="myForm" enctype="multipart/form-data" role="form">
       <!--標題-->
-      <div class="form-group row">
+      <div class="form-group row mb-3">
         <label class="col-sm-2 col-form-label text-sm-right control-label">
           <{$smarty.const._MA_TADEMBED_TITLE}>
         </label>
@@ -104,7 +104,7 @@
       </div>
 
       <!--設定項目-->
-      <div class="form-group row">
+      <div class="form-group row mb-3">
         <label class="col-sm-2 col-form-label text-sm-right control-label">
           <{$smarty.const._MA_TADEMBED_BLOCK_OPTIONS}>
         </label>
@@ -114,7 +114,7 @@
       </div>
 
       <!--寬度-->
-      <div class="form-group row">
+      <div class="form-group row mb-3">
         <label class="col-sm-2 col-form-label text-sm-right control-label">
           <{$smarty.const._MA_TADEMBED_WIDTH}>
         </label>
@@ -125,7 +125,7 @@
 
 
       <!--高度-->
-      <div class="form-group row">
+      <div class="form-group row mb-3">
         <label class="col-sm-2 col-form-label text-sm-right control-label">
           <{$smarty.const._MA_TADEMBED_HEIGHT}>
         </label>
@@ -136,7 +136,7 @@
 
 
       <!--框線-->
-      <div class="form-group row">
+      <div class="form-group row mb-3">
         <label class="col-sm-2 col-form-label text-sm-right control-label">
           <{$smarty.const._MA_TADEMBED_BORDER}>
         </label>
@@ -157,7 +157,7 @@
       </div>
 
       <!--捲軸-->
-      <div class="form-group row">
+      <div class="form-group row mb-3">
         <label class="col-sm-2 col-form-label text-sm-right control-label">
           <{$smarty.const._MA_TADEMBED_SCROLLING}>
         </label>
@@ -184,7 +184,7 @@
       </div>
 
       <!--備註-->
-      <div class="form-group row">
+      <div class="form-group row mb-3">
         <label class="col-sm-2 col-form-label text-sm-right control-label">
           <{$smarty.const._MA_TADEMBED_NOTE}>
         </label>

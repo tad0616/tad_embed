@@ -5,7 +5,6 @@ use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 require_once __DIR__ . '/header.php';
 $url = parse_url(\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
-// die(var_dump($url));
 header("X-Frame-Options: ALLOW-FROM {$url['scheme']}://{$url['host']}/*");
 $GLOBALS['xoopsOption']['template_main'] = 'tad_embed_demo.tpl';
 $xoopsConfig['theme_set'] = 'blank_theme';
