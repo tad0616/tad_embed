@@ -3,7 +3,7 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADEMBED_NAME;
-$modversion['version'] = 2.5;
+$modversion['version'] = 2.6;
 $modversion['description'] = _MI_TADEMBED_DESC;
 $modversion['author'] = _MI_TADEMBED_AUTHOR;
 $modversion['credits'] = _MI_TADEMBED_CREDITS;
@@ -14,7 +14,7 @@ $modversion['image'] = 'images/logo.png';
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2022-01-28';
+$modversion['release_date'] = '2022-08-17';
 $modversion['module_website_url'] = 'https://tad0616.net/';
 $modversion['module_website_name'] = _MI_TADEMBED_AUTHOR_WEB;
 $modversion['module_status'] = 'release';
@@ -67,6 +67,9 @@ $modversion['templates'][$i]['description'] = 'tad_embed_demo.tpl';
 $i++;
 $modversion['templates'][$i]['file'] = 'tad_embed_page.tpl';
 $modversion['templates'][$i]['description'] = 'tad_embed_page.tpl';
+$i++;
+$modversion['templates'][$i]['file'] = 'tad_embed_page_test.tpl';
+$modversion['templates'][$i]['description'] = 'tad_embed_page_test.tpl';
 
 //---區塊設定---//
 // $modversion['blocks'][1]['file']        = "tad_embed_demo.php";
