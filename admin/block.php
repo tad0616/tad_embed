@@ -86,4 +86,7 @@ switch ($op) {
         break;
 }
 
+$xoTheme->addStylesheet('/modules/tadtools/css/font-awesome/css/font-awesome.css');
+$xoTheme->addStylesheet(XOOPS_URL . "/modules/tadtools/css/xoops_adm{$_SEESION['bootstrap']}.css");
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/my-input.css');
 require_once __DIR__ . '/footer.php';

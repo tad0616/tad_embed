@@ -5,7 +5,7 @@ use XoopsModules\Tadtools\Utility;
 require_once __DIR__ . '/header.php';
 $url = parse_url(\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
 header("X-Frame-Options: ALLOW-FROM {$url['scheme']}://{$url['host']}/*");
-$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_page_test.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_page.tpl';
 
 // $xoopsOption['template_main'] = 'tad_embed_page.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';

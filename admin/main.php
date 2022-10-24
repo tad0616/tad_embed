@@ -300,6 +300,8 @@ switch ($op) {
         break;
         /*---判斷動作請貼在上方---*/
 }
-$xoTheme->addStylesheet('modules/tadtools/css/font-awesome/css/font-awesome.css');
+$xoTheme->addStylesheet('/modules/tadtools/css/font-awesome/css/font-awesome.css');
+$xoTheme->addStylesheet(XOOPS_URL . "/modules/tadtools/css/xoops_adm{$_SEESION['bootstrap']}.css");
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/my-input.css');
 $xoopsTpl->assign('now_op', $op);
 require_once __DIR__ . '/footer.php';
