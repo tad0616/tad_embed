@@ -137,18 +137,17 @@ function insert_tad_embed()
     //取得使用者編號
     $uid = ($xoopsUser) ? $xoopsUser->uid() : '';
 
-    $myts = \MyTextSanitizer::getInstance();
     $border = (int) $_POST['border'];
     $blockid = (int) $_POST['blockid'];
 
-    $scrolling = $myts->addSlashes($_POST['scrolling']);
-    $width = $myts->addSlashes($_POST['width']);
-    $title = $myts->addSlashes($_POST['title']);
-    $note = $myts->addSlashes($_POST['note']);
-    $height = $myts->addSlashes($_POST['height']);
+    $scrolling = $xoopsDB->escape($_POST['scrolling']);
+    $width = $xoopsDB->escape($_POST['width']);
+    $title = $xoopsDB->escape($_POST['title']);
+    $note = $xoopsDB->escape($_POST['note']);
+    $height = $xoopsDB->escape($_POST['height']);
 
     $options = implode('|', $_POST['options']);
-    $options = $myts->addSlashes($options);
+    $options = $xoopsDB->escape($options);
 
     $now = date('Y-m-d H:i:s', xoops_getUserTimestamp(time()));
     $sql = 'insert into `' . $xoopsDB->prefix('tad_embed') . "`
@@ -170,18 +169,17 @@ function update_tad_embed($ebsn = '')
     //取得使用者編號
     $uid = ($xoopsUser) ? $xoopsUser->uid() : '';
 
-    $myts = \MyTextSanitizer::getInstance();
     $border = (int) $_POST['border'];
     $blockid = (int) $_POST['blockid'];
 
-    $scrolling = $myts->addSlashes($_POST['scrolling']);
-    $width = $myts->addSlashes($_POST['width']);
-    $title = $myts->addSlashes($_POST['title']);
-    $note = $myts->addSlashes($_POST['note']);
-    $height = $myts->addSlashes($_POST['height']);
+    $scrolling = $xoopsDB->escape($_POST['scrolling']);
+    $width = $xoopsDB->escape($_POST['width']);
+    $title = $xoopsDB->escape($_POST['title']);
+    $note = $xoopsDB->escape($_POST['note']);
+    $height = $xoopsDB->escape($_POST['height']);
 
     $options = implode('|', $_POST['options']);
-    $options = $myts->addSlashes($options);
+    $options = $xoopsDB->escape($options);
 
     $now = date('Y-m-d H:i:s', xoops_getUserTimestamp(time()));
     $sql = 'update `' . $xoopsDB->prefix('tad_embed') . "` set

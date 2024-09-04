@@ -4,8 +4,8 @@
     <div class="col-sm-6">
     <select onChange="location.href='index.php?ebsn='+this.value" class="form-control" title="select block">
         <option value="" ><{$smarty.const._MD_TADEMBED_SELECT_BLOCK}></option>
-        <{foreach from=$menu item=menu}>
-        <option value="<{$menu.ebsn}>" <{if $menu.ebsn==$ebsn}>selected<{/if}>><{$menu.title}></option>
+        <{foreach from=$menu item=block}>
+        <option value="<{$block.ebsn}>" <{if $block.ebsn==$ebsn}>selected<{/if}>><{$block.title}></option>
         <{/foreach}>
     </select>
 </div>

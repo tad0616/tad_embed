@@ -3,7 +3,8 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADEMBED_NAME;
-$modversion['version'] = 2.7;
+// $modversion['version'] = 2.7;
+$modversion['version'] = $_SESSION['xoops_version'] >= 20511 ? '3.0.0-Stable' : '3.0';
 $modversion['description'] = _MI_TADEMBED_DESC;
 $modversion['author'] = _MI_TADEMBED_AUTHOR;
 $modversion['credits'] = _MI_TADEMBED_CREDITS;
