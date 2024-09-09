@@ -10,7 +10,7 @@ xoops_loadLanguage('main', 'tadtools');
 //以流水號取得某筆tad_embed資料
 function get_tad_embed($ebsn = '')
 {
-    global $xoopsDB, $xoTheme;
+    global $xoopsDB;
     if (empty($ebsn)) {
         return;
     }

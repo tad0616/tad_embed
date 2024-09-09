@@ -9,6 +9,5 @@ if (!isset($_SESSION['tad_embed_adm'])) {
 
 $interface_menu[_TAD_TO_MOD] = 'index.php';
 if ($_SESSION['tad_embed_adm']) {
-    $interface_menu[_MD_TADEMBED_PAGE] = 'page.php';
-    $interface_menu[_TAD_TO_ADMIN] = 'admin/main.php';
+    $interface_menu[_MD_TAD_EMBED_FORM] = 'add.php';
 }

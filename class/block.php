@@ -26,21 +26,21 @@ class TadEmbedBlockForm extends XoopsThemeForm
     public function createElements($target)
     {
         if ($target->isNew()) {
-            $this->addElement(new \XoopsFormText(_MA_TADEMBED_BLOCK_TITLE, 'title', 35, 255, $target->block->getVar('title', 'e')));
+            $this->addElement(new \XoopsFormText(_MD_TADEMBED_BLOCK_TITLE, 'title', 35, 255, $target->block->getVar('title', 'e')));
         } else {
-            $this->addElement(new \XoopsFormText(_MA_TADEMBED_BLOCK_TITLE, 'title', 35, 255, $target->getVar('title', 'e')));
+            $this->addElement(new \XoopsFormText(_MD_TADEMBED_BLOCK_TITLE, 'title', 35, 255, $target->getVar('title', 'e')));
         }
 
         $options = $target->block->getOptions();
         if ($options) {
-            $this->addElement(new \XoopsFormLabel(_MA_TADEMBED_BLOCK_OPTIONS, $options));
+            $this->addElement(new \XoopsFormLabel(_MD_TADEMBED_BLOCK_OPTIONS, $options));
         }
 
-        $this->addElement(new \XoopsFormText(_MA_TADEMBED_WIDTH, 'width', 5, 255, $target->block->getVar('width', 'e')));
-        $this->addElement(new \XoopsFormText(_MA_TADEMBED_HEIGHT, 'height', 5, 255, $target->block->getVar('height', 'e')));
+        $this->addElement(new \XoopsFormText(_MD_TADEMBED_WIDTH, 'width', 5, 255, $target->block->getVar('width', 'e')));
+        $this->addElement(new \XoopsFormText(_MD_TADEMBED_HEIGHT, 'height', 5, 255, $target->block->getVar('height', 'e')));
 
-        $this->addElement(new \XoopsFormRadioYN(_MA_TADEMBED_BORDER, 'border', $target->block->getVar('border', 'e')));
-        $this->addElement(new \XoopsFormTextArea(_MA_TADEMBED_NOTE, 'note', $target->block->getVar('border', 'e'), 3, 50, ''));
+        $this->addElement(new \XoopsFormRadioYN(_MD_TADEMBED_BORDER, 'border', $target->block->getVar('border', 'e')));
+        $this->addElement(new \XoopsFormTextArea(_MD_TADEMBED_NOTE, 'note', $target->block->getVar('border', 'e'), 3, 50, ''));
 
         $this->addElement(new \XoopsFormHidden('blockid', $target->getVar('blockid')));
         $this->addElement(new \XoopsFormHidden('op', 'save'));
@@ -48,9 +48,9 @@ class TadEmbedBlockForm extends XoopsThemeForm
             $this->addElement(new \XoopsFormHidden('ebsn', $target->getVar('ebsn')));
         }
         $tray = new \XoopsFormElementTray('');
-        $tray->addElement(new \XoopsFormButton('', 'submit', _MA_TADEMBED_OK, 'submit'));
+        $tray->addElement(new \XoopsFormButton('', 'submit', _MD_TADEMBED_OK, 'submit'));
 
-        $cancel = new \XoopsFormButton('', 'cancel', _MA_TADEMBED_CANCEL, 'button');
+        $cancel = new \XoopsFormButton('', 'cancel', _MD_TADEMBED_CANCEL, 'button');
         $cancel->setExtra("onclick=\"self.location='index.php?ebsn=" . $target->getVar('ebsn') . "';\"");
         $tray->addElement($cancel);
 

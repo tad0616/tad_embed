@@ -40,9 +40,7 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'][1] = 'tad_embed';
 
 //---管理介面設定---//
-$modversion['hasAdmin'] = 1;
-$modversion['adminindex'] = 'admin/index.php';
-$modversion['adminmenu'] = 'admin/menu.php';
+$modversion['hasAdmin'] = 0;
 
 //---使用者主選單設定---//
 $modversion['hasMain'] = 1;
@@ -57,11 +55,11 @@ $modversion['templates'][2]['description'] = _MI_TADEMBED_TEMPLATE_DESC2;
 //---樣板設定---//
 $modversion['templates'] = [];
 $i = 1;
-$modversion['templates'][$i]['file'] = 'tad_embed_adm_main.tpl';
-$modversion['templates'][$i]['description'] = 'tad_embed_adm_main.tpl';
-$i++;
 $modversion['templates'][$i]['file'] = 'tad_embed_index.tpl';
 $modversion['templates'][$i]['description'] = 'tad_embed_index.tpl';
+$i++;
+$modversion['templates'][$i]['file'] = 'tad_embed_add.tpl';
+$modversion['templates'][$i]['description'] = 'tad_embed_add.tpl';
 $i++;
 $modversion['templates'][$i]['file'] = 'tad_embed_demo.tpl';
 $modversion['templates'][$i]['description'] = 'tad_embed_demo.tpl';

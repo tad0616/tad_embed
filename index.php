@@ -45,7 +45,7 @@ function list_tad_embed($ebsn)
 
     if ($_SESSION['tad_embed_adm']) {
         $SweetAlert = new SweetAlert();
-        $SweetAlert->render('delete_tad_embed_func', 'admin/main.php?op=delete_tad_embed&ebsn=', 'ebsn');
+        $SweetAlert->render('delete_tad_embed_func', 'add.php?op=delete_tad_embed&ebsn=', 'ebsn');
     }
 }
 

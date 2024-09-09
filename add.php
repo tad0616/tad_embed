@@ -3,10 +3,66 @@ use Xmf\Request;
 use XoopsModules\Tadtools\FormValidator;
 use XoopsModules\Tadtools\SweetAlert;
 use XoopsModules\Tadtools\Utility;
+
 /*-----------引入檔案區--------------*/
-$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_adm_main.tpl';
 require_once __DIR__ . '/header.php';
-require_once dirname(__DIR__) . '/function.php';
+$xoopsOption['template_main'] = 'tad_embed_add.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
+
+if (!$_SESSION['tad_embed_adm']) {
+    redirect_header($_SERVER['PHP_SELF'], 3, _MD_TADEMBED_NO_PERMISSION);
+}
+/*-----------執行動作判斷區----------*/
+$op = Request::getString('op');
+$ebsn = Request::getInt('ebsn');
+
+switch ($op) {
+    /*---判斷動作請貼在下方---*/
+
+    //新增資料
+    case 'insert_tad_embed':
+        $ebsn = insert_tad_embed();
+        header("location: index.php?ebsn=$ebsn");
+        exit;
+
+    //更新資料
+    case 'update_tad_embed':
+        update_tad_embed($ebsn);
+        header("location: index.php?ebsn=$ebsn");
+        exit;
+    //更新資料
+    case 'update_tad_embed_config':
+        update_tad_embed_config($ebsn);
+        header("location: index.php?ebsn=$ebsn");
+        exit;
+
+    //新增區塊
+    case 'select_block':
+        select_block();
+        break;
+    //設定區塊
+    case 'tad_embed_form':
+        tad_embed_form($ebsn);
+        break;
+    //刪除資料
+    case 'delete_tad_embed':
+        delete_tad_embed($ebsn);
+        header("location: {$_SERVER['PHP_SELF']}");
+        exit;
+
+    //預設動作
+    default:
+        list_tad_embed();
+        $op = 'list_tad_embed';
+        break;
+        /*---判斷動作請貼在上方---*/
+}
+
+/*-----------秀出結果區--------------*/
+$xoopsTpl->assign('now_op', $op);
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/my-input.css');
+require_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------function區--------------*/
 //tad_embed編輯表單
@@ -93,7 +149,7 @@ function tad_embed_form($ebsn = '')
 
     $options_form = $Block->getOptions();
     if ($options_form) {
-        $XoopsFormLabel = new \XoopsFormLabel(_MA_TADEMBED_BLOCK_OPTIONS, $options_form);
+        $XoopsFormLabel = new \XoopsFormLabel(_MD_TADEMBED_BLOCK_OPTIONS, $options_form);
         $options = $XoopsFormLabel->render();
     }
 
@@ -174,10 +230,10 @@ function update_tad_embed($ebsn = '')
 
     $scrolling = $xoopsDB->escape($_POST['scrolling']);
     $width = $xoopsDB->escape($_POST['width']);
-    $title = $xoopsDB->escape($_POST['title']);
-    $note = $xoopsDB->escape($_POST['note']);
     $height = $xoopsDB->escape($_POST['height']);
 
+    $title = $xoopsDB->escape($_POST['title']);
+    $note = $xoopsDB->escape($_POST['note']);
     $options = implode('|', $_POST['options']);
     $options = $xoopsDB->escape($options);
 
@@ -192,6 +248,30 @@ function update_tad_embed($ebsn = '')
     `options` = '{$options}' ,
     `scrolling` = '{$scrolling}' ,
     `uid` = '{$uid}'
+	where `ebsn` = '$ebsn'";
+    $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+
+    return $ebsn;
+}
+
+//更新tad_embed某一筆資料
+function update_tad_embed_config($ebsn = '')
+{
+    global $xoopsDB;
+
+    $border = (int) $_POST['border'];
+    $blockid = (int) $_POST['blockid'];
+
+    $scrolling = $xoopsDB->escape($_POST['scrolling']);
+    $width = $xoopsDB->escape($_POST['width']);
+    $height = $xoopsDB->escape($_POST['height']);
+
+    $sql = 'update `' . $xoopsDB->prefix('tad_embed') . "` set
+    `blockid` = '{$blockid}' ,
+    `width` = '{$width}' ,
+    `height` = '{$height}' ,
+    `border` = '{$border}' ,
+    `scrolling` = '{$scrolling}'
 	where `ebsn` = '$ebsn'";
     $xoopsDB->queryF($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 
@@ -237,7 +317,7 @@ function list_tad_embed($show_function = 1)
     $xoopsTpl->assign('bar', $bar);
 
     $SweetAlert = new SweetAlert();
-    $SweetAlert->render('delete_tad_embed_func', 'main.php?op=delete_tad_embed&ebsn=', 'ebsn');
+    $SweetAlert->render('delete_tad_embed_func', 'add.php?op=delete_tad_embed&ebsn=', 'ebsn');
 }
 
 //刪除tad_embed某筆資料資料
@@ -257,49 +337,3 @@ function select_block()
     $arr = $allblocks + $allcustomblocks;
     $xoopsTpl->assign('arr', $arr);
 }
-
-/*-----------執行動作判斷區----------*/
-$op = Request::getString('op');
-$ebsn = Request::getInt('ebsn');
-
-switch ($op) {
-    /*---判斷動作請貼在下方---*/
-
-    //新增資料
-    case 'insert_tad_embed':
-        $ebsn = insert_tad_embed();
-        header("location: ../index.php?ebsn=$ebsn");
-        exit;
-
-    //更新資料
-    case 'update_tad_embed':
-        update_tad_embed($ebsn);
-        header("location: ../index.php?ebsn=$ebsn");
-        exit;
-
-    //新增區塊
-    case 'select_block':
-        select_block();
-        break;
-    //設定區塊
-    case 'tad_embed_form':
-        tad_embed_form($ebsn);
-        break;
-    //刪除資料
-    case 'delete_tad_embed':
-        delete_tad_embed($ebsn);
-        header("location: {$_SERVER['PHP_SELF']}");
-        exit;
-
-    //預設動作
-    default:
-        list_tad_embed();
-        $op = 'list_tad_embed';
-        break;
-        /*---判斷動作請貼在上方---*/
-}
-$xoTheme->addStylesheet('/modules/tadtools/css/font-awesome/css/font-awesome.css');
-$xoTheme->addStylesheet(XOOPS_URL . "/modules/tadtools/css/xoops_adm{$_SEESION['bootstrap']}.css");
-$xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/my-input.css');
-$xoopsTpl->assign('now_op', $op);
-require_once __DIR__ . '/footer.php';
