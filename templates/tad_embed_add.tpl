@@ -1,7 +1,7 @@
 <{$toolbar}>
 
 <{if $now_op=="list_tad_embed"}>
-  <{if $all_content}>
+  <{if $all_content|default:false}>
     <script>
     function delete_tad_embed_func(ebsn){
       var sure = window.confirm("<{$smarty.const._TAD_DEL_CONFIRM}>");
@@ -46,7 +46,7 @@
   <{/if}>
   <div class="text-center">
     <a href="add.php?op=select_block" class="btn btn-info"><{$smarty.const._TAD_ADD}></a>
-    <{if $all_content}>
+    <{if $all_content|default:false}>
     <{$bar}>
     <{/if}>
   </div>
@@ -104,7 +104,7 @@
       </div>
     </div>
 
-    <{if $options}>
+    <{if $options|default:false}>
     <!--設定項目-->
     <div class="form-group row mb-3">
       <label class="col-sm-2 col-form-label text-sm-right control-label">
