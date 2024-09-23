@@ -1,4 +1,4 @@
-<{$toolbar}>
+<{$toolbar|default:''}>
 
 <{if $now_op=="list_tad_embed"}>
   <{if $all_content|default:false}>
@@ -47,7 +47,7 @@
   <div class="text-center">
     <a href="add.php?op=select_block" class="btn btn-info"><{$smarty.const._TAD_ADD}></a>
     <{if $all_content|default:false}>
-    <{$bar}>
+    <{$bar|default:''}>
     <{/if}>
   </div>
 <{/if}>
@@ -61,7 +61,7 @@
       <div class="col-sm-8">
         <select name="blockid" class="form-control">
           <{foreach from=$arr key=blockid item=blockName}>
-            <option value="<{$blockid}>"><{$blockName}></option>
+            <option value="<{$blockid|default:''}>"><{$blockName|default:''}></option>
           <{/foreach}>
         </select>
       </div>
@@ -100,7 +100,7 @@
         <{$smarty.const._MD_TADEMBED_TITLE}>
       </label>
       <div class="col-sm-10">
-        <input type="text" name="title" class="form-control" value="<{$title}>" id="title" >
+        <input type="text" name="title" class="form-control" value="<{$title|default:''}>" id="title" >
       </div>
     </div>
 
@@ -111,7 +111,7 @@
         <{$smarty.const._MD_TADEMBED_BLOCK_OPTIONS}>
       </label>
       <div class="col-sm-10" id="options">
-        <{$options}>
+        <{$options|default:''}>
       </div>
     </div>
     <{/if}>
@@ -122,7 +122,7 @@
         <{$smarty.const._MD_TADEMBED_WIDTH}>
       </label>
       <div class="col-sm-10">
-        <input type="text" name="width" class="form-control" value="<{$width}>" id="width" >
+        <input type="text" name="width" class="form-control" value="<{$width|default:''}>" id="width" >
       </div>
     </div>
 
@@ -133,7 +133,7 @@
         <{$smarty.const._MD_TADEMBED_HEIGHT}>
       </label>
       <div class="col-sm-10">
-        <input type="text" name="height" class="form-control" value="<{$height}>" id="height" >
+        <input type="text" name="height" class="form-control" value="<{$height|default:''}>" id="height" >
       </div>
     </div>
 
@@ -192,16 +192,16 @@
         <{$smarty.const._MD_TADEMBED_NOTE}>
       </label>
       <div class="col-sm-10">
-        <textarea name="note" rows=2 id="note" class="form-control"><{$note}></textarea>
+        <textarea name="note" rows=2 id="note" class="form-control"><{$note|default:''}></textarea>
       </div>
     </div>
 
     <div class="text-center">
       <!--流水號-->
-      <input type="hidden" name="ebsn" value="<{$ebsn}>">
+      <input type="hidden" name="ebsn" value="<{$ebsn|default:''}>">
       <!--區塊編號-->
-      <input type="hidden" name="blockid" value="<{$blockid}>">
-      <input type="hidden" name="op" value="<{$op}>">
+      <input type="hidden" name="blockid" value="<{$blockid|default:''}>">
+      <input type="hidden" name="op" value="<{$op|default:''}>">
       <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SAVE}></button>
     </div>
   </form>

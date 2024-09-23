@@ -1,4 +1,4 @@
-<{$toolbar}>
+<{$toolbar|default:''}>
 
 <div class="alert alert-info">
     <h3><{$smarty.const._MD_TADEMBED_PREVIEW}></h3>
@@ -13,10 +13,10 @@
         </div>
         <{if $smarty.session.tad_embed_adm and $ebsn}>
             <div class="col-sm-2 d-grid gap-2">
-                <a href="javascript:delete_tad_embed_func(<{$ebsn}>);" class="btn btn-danger btn-block"><{$smarty.const._TAD_DEL}></a>
+                <a href="javascript:delete_tad_embed_func(<{$ebsn|default:''}>);" class="btn btn-danger btn-block"><{$smarty.const._TAD_DEL}></a>
             </div>
             <div class="col-sm-2 d-grid gap-2">
-                <a href="add.php?op=tad_embed_form&ebsn=<{$ebsn}>" class="btn btn-warning btn-block"><{$smarty.const._TAD_EDIT}></a>
+                <a href="add.php?op=tad_embed_form&ebsn=<{$ebsn|default:''}>" class="btn btn-warning btn-block"><{$smarty.const._TAD_EDIT}></a>
             </div>
             <div class="col-sm-2 d-grid gap-2">
                 <a href="add.php?op=select_block" class="btn btn-success btn-block"><{$smarty.const._TAD_ADD}></a>
@@ -29,7 +29,7 @@
     <h3><{$smarty.const._MD_TADEMBED_COPY}></h3>
 
     <textarea class="form-control" id="embed_code" style="background: #000000; color: #ffee01; height: 100px; margin: 10px 0px;font-family: Arial, Helvetica, sans-serif"><base target="_parent">
-<iframe src="<{$xoops_url}>/modules/tad_embed/tad_embed_demo.php?ebsn=<{$ebsn}>" style="<{$width_smarty}> <{$height_smarty}> <{$border_smarty}>" scrolling="<{$embed.scrolling}>" title="code"></iframe></textarea>
+<iframe src="<{$xoops_url}>/modules/tad_embed/tad_embed_demo.php?ebsn=<{$ebsn|default:''}>" style="<{$width_smarty|default:''}> <{$height_smarty|default:''}> <{$border_smarty|default:''}>" scrolling="<{$embed.scrolling}>" title="code"></iframe></textarea>
 
     <div id="copyMessage" style="display: none; color: green; margin-top: 10px;">已複製</div>
 
@@ -80,7 +80,7 @@
                             </select>
                             <{if $smarty.session.tad_embed_adm and $ebsn}>
                             <!--流水號-->
-                            <input type="hidden" name="ebsn" value="<{$ebsn}>">
+                            <input type="hidden" name="ebsn" value="<{$ebsn|default:''}>">
                             <!--區塊編號-->
                             <input type="hidden" name="blockid" value="<{$embed.blockid}>">
                             <input type="hidden" name="op" value="update_tad_embed_config">
@@ -93,11 +93,11 @@
         </div>
     </div>
     <div style="border:1px dotted #7daff0;">
-        <iframe id="embed_demo" src="<{$xoops_url}>/modules/tad_embed/tad_embed_demo.php?ebsn=<{$ebsn}>" style="<{$width_smarty}> <{$height_smarty}> <{$border_smarty}>" scrolling="<{$embed.scrolling}>" title="demo">
+        <iframe id="embed_demo" src="<{$xoops_url}>/modules/tad_embed/tad_embed_demo.php?ebsn=<{$ebsn|default:''}>" style="<{$width_smarty|default:''}> <{$height_smarty|default:''}> <{$border_smarty|default:''}>" scrolling="<{$embed.scrolling}>" title="demo">
         </iframe>
     </div>
     <div class="text-center mt-3">
-        <a href="page.php?ebsn=<{$ebsn}>" class="btn btn-primary btn-block"><{$smarty.const._MD_TADEMBED_PAGE}></a>
+        <a href="page.php?ebsn=<{$ebsn|default:''}>" class="btn btn-primary btn-block"><{$smarty.const._MD_TADEMBED_PAGE}></a>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -117,7 +117,7 @@
                 const scrolling = document.getElementById('scrolling').value;
 
                 // 更新嵌入代碼
-                const newEmbedCode = `<base target="_parent">\n<iframe src="<{$xoops_url}>/modules/tad_embed/tad_embed_demo.php?ebsn=<{$ebsn}>" style="width: ${width}; height: ${height}; border: ${border};" scrolling="${scrolling}" title="code"></iframe>`;
+                const newEmbedCode = `<base target="_parent">\n<iframe src="<{$xoops_url}>/modules/tad_embed/tad_embed_demo.php?ebsn=<{$ebsn|default:''}>" style="width: ${width}; height: ${height}; border: ${border};" scrolling="${scrolling}" title="code"></iframe>`;
                 embedCodeTextarea.value = newEmbedCode;
 
                 // 更新 iframe 預覽
@@ -150,6 +150,6 @@
 
 <{if $smarty.session.tad_embed_adm && $ebsn && $http_referer}>
     <div class="alert alert-info">
-        <a href="<{$http_referer}>" target="_blank"><{$http_referer}></a>
+        <a href="<{$http_referer|default:''}>" target="_blank"><{$http_referer|default:''}></a>
     </div>
 <{/if}>
