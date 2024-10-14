@@ -19,6 +19,7 @@ define('_MD_TADEMBED_TITLE', 'title');
 define('_MD_TADEMBED_UID', 'creator');
 define('_MD_TADEMBED_UPDATE_DATE', 'last use date');
 define('_MD_TADEMBED_COUNTER', 'count');
+define('_MD_TAD_EMBED_LIST', 'All embeddable blocks');
 define('_MD_TAD_EMBED_FORM', 'set into the block');
 
 define('_MD_TADEMBED_SUCCESS', 'build block success!');
@@ -35,3 +36,4 @@ define('_MD_TADEMBED_SCROLLING', 'iframe reel settings');
 define('_MD_TADEMBED_SCROLLING2', 'reel');
 define('_MD_TADEMBED_HTTP_REFERER', 'Recently used the site of the block');
 define('_MD_TADEMBED_NO_PERMISSION', 'No permission to embed blocks');
+define('_MD_TADEMBED_COPIED', 'Copied');

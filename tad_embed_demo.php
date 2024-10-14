@@ -6,15 +6,15 @@ use XoopsModules\Tadtools\Utility;
 require_once __DIR__ . '/header.php';
 $url = parse_url(\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
 header("X-Frame-Options: ALLOW-FROM {$url['scheme']}://{$url['host']}/*");
-$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_demo.tpl';
 $xoopsConfig['theme_set'] = 'blank_theme';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_demo.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
-/*-----------function區--------------*/
 
+/*-----------秀出結果區--------------*/
 $op = Request::getString('op');
 $ebsn = Request::getInt('ebsn');
-
-//$embed=get_tad_embed($ebsn);
+error_reporting(0);
+$xoopsLogger->activated = false;
 
 $block = blockShow($ebsn);
 
@@ -22,12 +22,20 @@ $width_smarty = empty($embed['width']) ? '' : "width: {$embed['width']};";
 $height_smarty = '';
 $border_smarty = empty($embed['border']) ? '' : "border: {$embed['border']}px solid gray;";
 
+$xoopsTpl->assign('width', $width_smarty);
+$xoopsTpl->assign('height', $height_smarty);
+$xoopsTpl->assign('border', $border_smarty);
+$xoopsTpl->assign('content', $block);
+require_once XOOPS_ROOT_PATH . '/footer.php';
+
+/*-----------function區--------------*/
+
 function blockShow($ebsn)
 {
     global $xoopsDB;
     $bb = get_tad_embed($ebsn);
-    $sql = 'select * from `' . $xoopsDB->prefix('newblocks') . "` where `bid` = '{$bb['blockid']}'";
-    $result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
+    $sql = 'SELECT * FROM `' . $xoopsDB->prefix('newblocks') . '` WHERE `bid` =?';
+    $result = Utility::query($sql, 'i', [$bb['blockid']]) or Utility::web_error($sql, __FILE__, __LINE__);
 
     require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
     require_once XOOPS_ROOT_PATH . '/class/template.php';
@@ -57,15 +65,9 @@ function blockShow($ebsn)
     }
 
     $now = date('Y-m-d H:i:s', xoops_getUserTimestamp(time()));
-    $sql = 'update `' . $xoopsDB->prefix('tad_embed') . "` set `update_date` = '{$now}' , `http_referer`= '{\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}', `counter` = `counter` +1	 where `ebsn` = '{$ebsn}'";
-    $xoopsDB->queryF($sql);
+    $sql = 'UPDATE `' . $xoopsDB->prefix('tad_embed') . '` SET `update_date` = ?, `http_referer`= ?, `counter` = `counter` + 1 WHERE `ebsn` = ?';
+    Utility::query($sql, 'ssi', [$now, Request::getString('HTTP_REFERER', '', 'SERVER'), $ebsn]);
 
     //$block=$template->display($tplName);
     return $block;
 }
-/*-----------秀出結果區--------------*/
-$xoopsTpl->assign('width', $width_smarty);
-$xoopsTpl->assign('height', $height_smarty);
-$xoopsTpl->assign('border', $border_smarty);
-$xoopsTpl->assign('content', $block);
-require_once XOOPS_ROOT_PATH . '/footer.php';

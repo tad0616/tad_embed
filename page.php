@@ -5,10 +5,25 @@ use XoopsModules\Tadtools\Utility;
 require_once __DIR__ . '/header.php';
 $url = parse_url(\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
 header("X-Frame-Options: ALLOW-FROM {$url['scheme']}://{$url['host']}/*");
-$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_page.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_embed_index.tpl';
 
-// $xoopsOption['template_main'] = 'tad_embed_page.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
+
+/*-----------執行動作判斷區----------*/
+$op = Request::getString('op');
+$ebsn = Request::getInt('ebsn');
+
+switch ($op) {
+    default:
+        show_tad_embed($ebsn);
+        $op = 'show_tad_embed';
+        break;
+}
+
+/*-----------秀出結果區--------------*/
+$xoopsTpl->assign('now_op', $op);
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu, false, $interface_icon));
+require_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------function區--------------*/
 function show_tad_embed($ebsn)
@@ -31,17 +46,3 @@ function show_tad_embed($ebsn)
     $xoopsTpl->assign('border_smarty', $border_smarty);
 
 }
-
-/*-----------執行動作判斷區----------*/
-$op = Request::getString('op');
-$ebsn = Request::getInt('ebsn');
-
-switch ($op) {
-    default:
-        show_tad_embed($ebsn);
-        break;
-}
-
-/*-----------秀出結果區--------------*/
-$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
-require_once XOOPS_ROOT_PATH . '/footer.php';

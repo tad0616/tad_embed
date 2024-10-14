@@ -19,6 +19,7 @@ define('_MD_TADEMBED_TITLE', '標題');
 define('_MD_TADEMBED_UID', '建立者');
 define('_MD_TADEMBED_UPDATE_DATE', '最後使用日期');
 define('_MD_TADEMBED_COUNTER', '計數');
+define('_MD_TAD_EMBED_LIST', '所有可嵌入區塊');
 define('_MD_TAD_EMBED_FORM', '設定嵌入區塊');
 
 define('_MD_TADEMBED_SUCCESS', '建立區塊成功！');
@@ -35,3 +36,4 @@ define('_MD_TADEMBED_SCROLLING', 'iframe 捲軸設定');
 define('_MD_TADEMBED_SCROLLING2', '捲軸');
 define('_MD_TADEMBED_HTTP_REFERER', '最近使用該區塊的網站');
 define('_MD_TADEMBED_NO_PERMISSION', '沒有設定嵌入區塊的權限');
+define('_MD_TADEMBED_COPIED', '已複製');

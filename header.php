@@ -7,7 +7,10 @@ if (!isset($_SESSION['tad_embed_adm'])) {
     $_SESSION['tad_embed_adm'] = ($xoopsUser) ? $xoopsUser->isAdmin() : false;
 }
 
-$interface_menu[_TAD_TO_MOD] = 'index.php';
+$interface_menu[_MD_TAD_EMBED_LIST] = 'index.php';
+$interface_icon[_MD_TAD_EMBED_LIST] = "fa-cubes";
+
 if ($_SESSION['tad_embed_adm']) {
     $interface_menu[_MD_TAD_EMBED_FORM] = 'add.php';
+    $interface_icon[_MD_TAD_EMBED_FORM] = "fa-plus-circle";
 }

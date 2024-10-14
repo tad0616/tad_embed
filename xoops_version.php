@@ -1,5 +1,6 @@
 <?php
 $modversion = [];
+global $xoopsConfig;
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADEMBED_NAME;
@@ -26,18 +27,19 @@ $modversion['min_xoops'] = '2.5';
 $modversion['min_tadtools'] = '1.20';
 
 //---paypal資訊---//
-$modversion['paypal'] = [];
-$modversion['paypal']['business'] = 'tad0616@gmail.com';
-$modversion['paypal']['item_name'] = 'Donation : ' . _MI_TAD_WEB;
-$modversion['paypal']['amount'] = 0;
-$modversion['paypal']['currency_code'] = 'USD';
+$modversion['paypal'] = [
+    'business' => 'tad0616@gmail.com',
+    'item_name' => 'Donation : ' . _MI_TAD_WEB,
+    'amount' => 0,
+    'currency_code' => 'USD',
+];
 
 //---啟動後台管理界面選單---//
 $modversion['system_menu'] = 1;
 
 //---資料表架構---//
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
-$modversion['tables'][1] = 'tad_embed';
+$modversion['tables'] = ['tad_embed'];
 
 //---管理介面設定---//
 $modversion['hasAdmin'] = 0;
@@ -46,33 +48,7 @@ $modversion['hasAdmin'] = 0;
 $modversion['hasMain'] = 1;
 
 //---樣板設定---//
-
-$modversion['templates'][1]['file'] = 'tad_embed_index_tpl.html';
-$modversion['templates'][1]['description'] = _MI_TADEMBED_TEMPLATE_DESC1;
-$modversion['templates'][2]['file'] = 'tad_embed_demo_tpl.html';
-$modversion['templates'][2]['description'] = _MI_TADEMBED_TEMPLATE_DESC2;
-
-//---樣板設定---//
-$modversion['templates'] = [];
-$i = 1;
-$modversion['templates'][$i]['file'] = 'tad_embed_index.tpl';
-$modversion['templates'][$i]['description'] = 'tad_embed_index.tpl';
-$i++;
-$modversion['templates'][$i]['file'] = 'tad_embed_add.tpl';
-$modversion['templates'][$i]['description'] = 'tad_embed_add.tpl';
-$i++;
-$modversion['templates'][$i]['file'] = 'tad_embed_demo.tpl';
-$modversion['templates'][$i]['description'] = 'tad_embed_demo.tpl';
-$i++;
-$modversion['templates'][$i]['file'] = 'tad_embed_page.tpl';
-$modversion['templates'][$i]['description'] = 'tad_embed_page.tpl';
-$i++;
-$modversion['templates'][$i]['file'] = 'tad_embed_page_iframe.tpl';
-$modversion['templates'][$i]['description'] = 'tad_embed_page_iframe.tpl';
-
-//---區塊設定---//
-// $modversion['blocks'][1]['file']        = "tad_embed_demo.php";
-// $modversion['blocks'][1]['name']        = _MI_TADEMBED_BNAME1;
-// $modversion['blocks'][1]['description'] = _MI_TADEMBED_BDESC1;
-// $modversion['blocks'][1]['show_func']   = "tad_embed_demo";
-// $modversion['blocks'][1]['template']    = "tad_embed_demo.html";
+$modversion['templates'] = [
+    ['file' => 'tad_embed_index.tpl', 'description' => 'tad_embed_index.tpl'],
+    ['file' => 'tad_embed_demo.tpl', 'description' => 'tad_embed_demo.tpl'],
+];
