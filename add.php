@@ -17,7 +17,6 @@ $op = Request::getString('op');
 $ebsn = Request::getInt('ebsn');
 
 switch ($op) {
-    /*---判斷動作請貼在下方---*/
 
     //新增資料
     case 'insert_tad_embed':
@@ -58,7 +57,7 @@ switch ($op) {
         list_all_tad_embed();
         $op = 'list_all_tad_embed';
         break;
-        /*---判斷動作請貼在上方---*/
+
 }
 
 /*-----------秀出結果區--------------*/

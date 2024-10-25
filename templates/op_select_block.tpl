@@ -12,7 +12,7 @@
       </div>
       <div class="col-sm-2">
       <input type="hidden" name="op" value="tad_embed_form">
-      <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SAVE}></button>
+      <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>  <{$smarty.const._TAD_SAVE}></button>
       </div>
     </div>
   </form>

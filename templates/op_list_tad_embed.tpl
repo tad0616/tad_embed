@@ -82,7 +82,7 @@
                             <!--區塊編號-->
                             <input type="hidden" name="blockid" value="<{$embed.blockid}>">
                             <input type="hidden" name="op" value="update_tad_embed_config">
-                            <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SAVE}></button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>  <{$smarty.const._TAD_SAVE}></button>
                             <{/if}>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 /*-----------秀出結果區--------------*/
 $op = Request::getString('op');
 $ebsn = Request::getInt('ebsn');
-error_reporting(0);
+// 關閉除錯訊息
 $xoopsLogger->activated = false;
 
 $block = blockShow($ebsn);
