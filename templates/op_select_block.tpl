@@ -1,10 +1,10 @@
 <form action="add.php" method="post" id="myForm" class="form-horizontal" role="form">
     <div class="form-group row mb-3">
-      <label class="col-sm-2 col-form-label text-sm-right control-label">
+      <label class="col-sm-2 col-form-label text-sm-right text-sm-end control-label">
         <{$smarty.const._MD_TADEMBED_SELECT_BLOCK}>
       </label>
       <div class="col-sm-8">
-        <select name="blockid" class="form-control">
+        <select name="blockid" class="form-select">
           <{foreach from=$arr key=blockid item=blockName}>
             <option value="<{$blockid|default:''}>"><{$blockName|default:''}></option>
           <{/foreach}>
