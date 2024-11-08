@@ -40,7 +40,6 @@ Tad Embed 2.3.3 (2019-05-10 released)
 1. Support XOOPS 2.5.10
 2. No longer supports PHP 5.3
 
-
 Tad Embed 2.3.2 (2019-01-22 released)
 ==========================================================
 1. Fixed the problem that the height could not be written to the unit.
@@ -53,28 +52,23 @@ Tad Embed 2.3.1 (2019-01-01 released)
 4. Remove unnecessary files
 5. Support MySQL database strict mode
 
-
 Tad Embed 2.3 (2017-10-11 release)
 =================================================
 1.Added embedded page functionality
-
 
 Tad Embed 2.1.1 (released on 2017-01-08)
 ===========================================
 1. Adjust the RWD to 1024 to operate
 
-
 Tad Embed 2.1 (2016-12-15 release)
 ===========================================
 1. Fixed a problem where different domains could not embed iframes
-
 
 Tad Embed 2.0 (2016-12-12 release)
 ===========================================
 1. Support XOOPS 2.5.8
 2. Support PHP7
 3. Support BootStrap3
-
 
 Tad Embed 1.0 (released on 2012-12-22)
 ===========================================
