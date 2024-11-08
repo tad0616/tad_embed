@@ -1,3 +1,13 @@
+Tad Embed 3.0 (released on 2024-11-11)
+====================================
+1. Support XOOPS 2.5.11
+2. Support PHP8.1.x
+3. Use $xoopsDB->escape() instead of $myts->addSlashes()
+4. Move the new embedded block function to the front desk
+5. Optimize the layout
+6. Add instant adjustment preview function
+7. Database syntax parameterization
+
 Tad Embed 2.7 (released on 2022-10-24)
 ====================================
 1. change the embed page to a better presentation (no iframe)
