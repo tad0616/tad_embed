@@ -9,7 +9,7 @@
                 <{/foreach}>
             </select>
         </div>
-        <{if $smarty.session.tad_embed_adm and $ebsn}>
+        <{if $tad_embed_adm and $ebsn}>
             <div class="col-sm-2 d-grid gap-2">
                 <a href="javascript:delete_tad_embed_func(<{$ebsn|default:''}>);" class="btn btn-danger btn-block"><i class="fa fa-trash" aria-hidden="true"></i> <{$smarty.const._TAD_DEL}></a>
             </div>
@@ -76,7 +76,7 @@
                                 <option value="yes" <{if $embed.scrolling == 'yes'}>selected<{/if}>><{$smarty.const._MD_TADEMBED_YES}></option>
                                 <option value="auto" <{if $embed.scrolling == 'auto'}>selected<{/if}>><{$smarty.const._MD_TADEMBED_AUTO}></option>
                             </select>
-                            <{if $smarty.session.tad_embed_adm and $ebsn}>
+                            <{if $tad_embed_adm and $ebsn}>
                             <!--流水號-->
                             <input type="hidden" name="ebsn" value="<{$ebsn|default:''}>">
                             <!--區塊編號-->
@@ -146,7 +146,7 @@
 <{/if}>
 
 
-<{if $smarty.session.tad_embed_adm && $ebsn && $http_referer}>
+<{if $tad_embed_adm && $ebsn && $http_referer}>
     <div class="alert alert-info">
         <a href="<{$http_referer|default:''}>" target="_blank"><{$http_referer|default:''}></a>
     </div>

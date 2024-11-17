@@ -20,13 +20,14 @@ switch ($op) {
 
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu, false, $interface_icon));
+$xoopsTpl->assign('tad_embed_adm', $tad_embed_adm);
 $xoopsTpl->assign('now_op', $op);
 require_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------function區--------------*/
 function list_tad_embed($ebsn)
 {
-    global $xoopsDB, $xoopsTpl;
+    global $xoopsDB, $xoopsTpl, $tad_embed_adm;
 
     $sql = 'SELECT `ebsn`, `title` FROM `' . $xoopsDB->prefix('tad_embed') . '` ';
     $result = Utility::query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
@@ -56,7 +57,7 @@ function list_tad_embed($ebsn)
     $xoopsTpl->assign('border_smarty', $border_smarty);
     $xoopsTpl->assign('embed', $embed);
 
-    if ($_SESSION['tad_embed_adm']) {
+    if ($tad_embed_adm) {
         $SweetAlert = new SweetAlert();
         $SweetAlert->render('delete_tad_embed_func', 'add.php?op=delete_tad_embed&ebsn=', 'ebsn');
     }

@@ -9,7 +9,7 @@ require_once __DIR__ . '/header.php';
 $xoopsOption['template_main'] = 'tad_embed_index.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
-if (!$_SESSION['tad_embed_adm']) {
+if (!$tad_embed_adm) {
     redirect_header($_SERVER['PHP_SELF'], 3, _MD_TADEMBED_NO_PERMISSION);
 }
 /*-----------執行動作判斷區----------*/
@@ -62,6 +62,7 @@ switch ($op) {
 
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('now_op', $op);
+$xoopsTpl->assign('tad_embed_adm', $tad_embed_adm);
 $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu, false, $interface_icon));
 $xoTheme->addStylesheet('modules/tadtools/css/my-input.css');
 require_once XOOPS_ROOT_PATH . '/footer.php';
