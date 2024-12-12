@@ -2,7 +2,7 @@
     <h3><{$smarty.const._MD_TADEMBED_PREVIEW}></h3>
     <div class="row">
         <div class="col-sm-6">
-            <select onChange="location.href='index.php?ebsn='+this.value" class="form-select" title="select block">
+            <select onChange="location.href='index.php?ebsn='+this.value" class="form-control form-select" title="select block">
                 <option value="" ><{$smarty.const._MD_TADEMBED_SELECT_BLOCK}></option>
                 <{foreach from=$menu item=block}>
                 <option value="<{$block.ebsn}>" <{if $block.ebsn==$ebsn}>selected<{/if}>><{$block.title}></option>
@@ -14,10 +14,10 @@
                 <a href="javascript:delete_tad_embed_func(<{$ebsn|default:''}>);" class="btn btn-danger btn-block"><i class="fa fa-trash" aria-hidden="true"></i> <{$smarty.const._TAD_DEL}></a>
             </div>
             <div class="col-sm-2 d-grid gap-2">
-                <a href="add.php?op=tad_embed_form&ebsn=<{$ebsn|default:''}>" class="btn btn-warning btn-block"><i class="fa fa-pencil-square" aria-hidden="true"></i> <{$smarty.const._TAD_EDIT}></a>
+                <a href="add.php?op=tad_embed_form&ebsn=<{$ebsn|default:''}>" class="btn btn-warning btn-block"><i class="fa fa-pen-to-square" aria-hidden="true"></i> <{$smarty.const._TAD_EDIT}></a>
             </div>
             <div class="col-sm-2 d-grid gap-2">
-                <a href="add.php?op=select_block" class="btn btn-success btn-block"><i class="fa fa-plus-square" aria-hidden="true"></i> <{$smarty.const._TAD_ADD}></a>
+                <a href="add.php?op=select_block" class="btn btn-success btn-block"><i class="fa fa-square-plus" aria-hidden="true"></i> <{$smarty.const._TAD_ADD}></a>
             </div>
         <{/if}>
     </div>
@@ -60,7 +60,7 @@
                             <div class="input-group-prepend input-group-addon">
                                 <span class="input-group-text"><{$smarty.const._MD_TADEMBED_BORDER}></span>
                             </div>
-                            <select name="border" id="border" class="form-select validate[required]">
+                            <select name="border" id="border" class="form-control form-select validate[required]">
                                 <option value="0" <{if $embed.border != '1'}>selected<{/if}>><{$smarty.const._NO}></option>
                                 <option value="1" <{if $embed.border == '1'}>selected<{/if}>><{$smarty.const._YES}></option>
                             </select>
@@ -71,7 +71,7 @@
                             <div class="input-group-prepend input-group-addon">
                                 <span class="input-group-text"><{$smarty.const._MD_TADEMBED_SCROLLING2}></span>
                             </div>
-                            <select name="scrolling" id="scrolling" class="form-select validate[required]">
+                            <select name="scrolling" id="scrolling" class="form-control form-select validate[required]">
                                 <option value="no" <{if $embed.scrolling == '1'}>selected<{/if}>><{$smarty.const._MD_TADEMBED_NO}></option>
                                 <option value="yes" <{if $embed.scrolling == 'yes'}>selected<{/if}>><{$smarty.const._MD_TADEMBED_YES}></option>
                                 <option value="auto" <{if $embed.scrolling == 'auto'}>selected<{/if}>><{$smarty.const._MD_TADEMBED_AUTO}></option>
@@ -82,7 +82,7 @@
                             <!--區塊編號-->
                             <input type="hidden" name="blockid" value="<{$embed.blockid}>">
                             <input type="hidden" name="op" value="update_tad_embed_config">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>  <{$smarty.const._TAD_SAVE}></button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-disk" aria-hidden="true"></i>  <{$smarty.const._TAD_SAVE}></button>
                             <{/if}>
                         </div>
                     </div>

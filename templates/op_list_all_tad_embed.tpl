@@ -25,7 +25,7 @@
                 <td><{$data.update_date}></td>
                 <td><{$data.counter}></td>
                 <td>
-                <a href="add.php?op=tad_embed_form&ebsn=<{$data.ebsn}>" class="btn btn-sm btn-warning"><i class="fa fa-pencil-square" aria-hidden="true"></i> <{$smarty.const._TAD_EDIT}></a>
+                <a href="add.php?op=tad_embed_form&ebsn=<{$data.ebsn}>" class="btn btn-sm btn-warning"><i class="fa fa-pen-to-square" aria-hidden="true"></i> <{$smarty.const._TAD_EDIT}></a>
                 <a href="javascript:delete_tad_embed_func(<{$data.ebsn}>);" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> <{$smarty.const._TAD_DEL}></a>
                 </td>
             </tr>
@@ -36,7 +36,7 @@
     </div>
 <{/if}>
 <div class="text-center">
-    <a href="add.php?op=select_block" class="btn btn-primary my-3"><i class="fa fa-plus-square" aria-hidden="true"></i> <{$smarty.const._TAD_ADD}></a>
+    <a href="add.php?op=select_block" class="btn btn-primary my-3"><i class="fa fa-square-plus" aria-hidden="true"></i> <{$smarty.const._TAD_ADD}></a>
     <{if $all_content|default:false}>
         <{$bar|default:''}>
     <{/if}>

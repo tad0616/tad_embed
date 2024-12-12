@@ -14,6 +14,7 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 $op = Request::getString('op');
 $ebsn = Request::getInt('ebsn');
 // 關閉除錯訊息
+header('HTTP/1.1 200 OK');
 $xoopsLogger->activated = false;
 
 $block = blockShow($ebsn);

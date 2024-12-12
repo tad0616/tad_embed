@@ -201,12 +201,11 @@ function insert_tad_embed()
 
     $border = (int) $_POST['border'];
     $blockid = (int) $_POST['blockid'];
-
-    $scrolling = $_POST['scrolling'];
-    $width = $_POST['width'];
-    $title = $_POST['title'];
-    $note = $_POST['note'];
-    $height = $_POST['height'];
+    $scrolling = (string) $_POST['scrolling'];
+    $width = (string) $_POST['width'];
+    $title = (string) $_POST['title'];
+    $note = (string) $_POST['note'];
+    $height = (string) $_POST['height'];
 
     $options = (isset($_POST['options']) && is_array($_POST['options'])) ? implode('|', $_POST['options']) : '';
 
@@ -233,12 +232,12 @@ function update_tad_embed($ebsn = '')
     $border = (int) $_POST['border'];
     $blockid = (int) $_POST['blockid'];
 
-    $scrolling = $_POST['scrolling'];
-    $width = $_POST['width'];
-    $height = $_POST['height'];
+    $scrolling = (string) $_POST['scrolling'];
+    $width = (string) $_POST['width'];
+    $height = (string) $_POST['height'];
 
-    $title = $_POST['title'];
-    $note = $_POST['note'];
+    $title = (string) $_POST['title'];
+    $note = (string) $_POST['note'];
     $options = implode('|', $_POST['options']);
 
     $sql = 'UPDATE `' . $xoopsDB->prefix('tad_embed') . '` SET
@@ -265,9 +264,9 @@ function update_tad_embed_config($ebsn = '')
     $border = (int) $_POST['border'];
     $blockid = (int) $_POST['blockid'];
 
-    $scrolling = $_POST['scrolling'];
-    $width = $_POST['width'];
-    $height = $_POST['height'];
+    $scrolling = (string) $_POST['scrolling'];
+    $width = (string) $_POST['width'];
+    $height = (string) $_POST['height'];
 
     $sql = 'UPDATE `' . $xoopsDB->prefix('tad_embed') . '` SET
     `blockid` = ?,
